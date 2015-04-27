@@ -1,4 +1,4 @@
-PADRINO_ENV = 'test' unless defined?(PADRINO_ENV)
+RACK_ENV = 'test' unless defined?(RACK_ENV)
 require File.expand_path('../../config/boot', __FILE__)
 
 FactoryGirl.find_definitions
@@ -20,6 +20,6 @@ class MiniTest::Unit::TestCase
     ##
     # You can handle all padrino applications using instead:
     #   Padrino.application
-    RobbinSite.tap { |app|  }
+    OnecoinIm.tap { |app|  }
   end
 end

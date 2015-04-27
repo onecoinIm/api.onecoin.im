@@ -1,0 +1,37 @@
+<% content_for :stylesheets do %>
+    <%= stylesheet_link_tag 'default/popup' %>
+<% end %>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <a href="/" class=""><img src="/images/popup/logo.png" alt=""></a>
+      </div>
+      <div class="modal-body">
+        <div class="text">
+          <%= content.html_safe %>
+        </div>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>
+
+<% content_for :javascripts do %>
+    <%= javascript_include_tag '../admin/javascripts/bootstrap/modal' %>
+
+    <script type="text/javascript">
+        $(function () {
+            $("a#english").click(function () {
+                $("#myModal").modal('show');
+            });
+
+//            $(".leadership-pop-up .close-pop-up").click(function () {
+//                $(".dashboard-pop-up").fadeOut(1000);
+//            });
+        });
+    </script>
+<% end %>

@@ -1,0 +1,35 @@
+- Next
+    * Add 添加ember-cli工程
+    * Fix 缓存如何在开发模式下修改
+    * Fix ueditor.parse.js好像没有起到作用; 编辑时，内容没有加载
+    * Add FQ/Helper
+    * Add auto share to weibo/weixin by users(must have weibo/phone num fields)
+    * Add invite
+    * Add mobileApp
+
+    * add/fix revise to the project
+     https://github.com/k2052/revise 不支持Datamapper
+    * padrino-warden支持多应用
+    https://github.com/jondot/padrino-warden
+
+- Finished
+
+2015.03.30
+    * Fix 根据category更改导航菜单
+    * Fix 主页，要根据用户角色，显示或隐藏删除和编辑按钮
+
+2015.03.29
+    * Fix 个别样式做了调整，更新了logo和微信图标;
+    * Add category, 主页内容按类别显示;
+
+2015.03.28
+    * Add UEditor [后台]
+    * Add blog_content for English
+    * Add category for blog - [note, news, manual, tools]
+
+2015.03.27
+    * fix access to support multi-apps [ok]
+    * update ruby to 2.1.5 and padrino to 0.12.5
+
+
+	

@@ -1,30 +1,37 @@
-<% 
-  # read view_count from model cache if model has been cached.
-  view_count = blog.view_count
-  if b = Blog.read_second_level_cache(blog.id)
-    view_count = b.view_count
-  end
+<%
+   # read view_count from model cache if model has been cached.
+   view_count = blog.view_count
+   if b = Blog.read_second_level_cache(blog.id)
+     view_count = b.view_count
+   end
 %>
 
 <div class="con">
-	<div class="tit clearfix">
-    <%= link_to blog.title, blog_url(blog) %>
-    <% if account_admin? %>
-    <%= link_to '', url(:admin, :blog, :id => blog.id), :method => :delete, :confirm => '你要删除这篇文章吗？', :class => 'del', :title => '删除' %>
-    <%= link_to '', url(:admin, :edit_blog, :id => blog.id), :class => 'edit', :title => '编辑' %>
+  <div class="tit clearfix">
+    <% if blog.category %>
+        <%= link_to "[#{t(blog.category.name)}]" + blog.title, blog_url(blog) %>
+    <% else %>
+        <%= link_to blog.title, blog_url(blog) %>
+    <% end %>
+
+    <% if account_admin? || is_owner_of(blog) %>
+        <%= link_to '', url("/admin/blogs/destroy/#{blog.id}"), :method => :delete, :confirm => '你要删除这篇文章吗？', :class => 'del', :title => '删除' %>
+        <%= link_to '', url("/admin/blogs/edit/#{blog.id}"), :class => 'edit', :title => '编辑' %>
     <% end %>
   </div>
+
   <div class="text">
-		<div class="infor_tag">    
-			<% blog.cached_tags.each do |tag| %>
-			<%= link_to "<span>#{tag}</span>".html_safe, url(:blog, :tag, :name => tag), :class => 'tag', :rel => 'tag' %>
-			<% end %>
-		</div>
-    <%= blog.content.truncate(300) %>
+    <div class="infor_tag">
+      <% blog.cached_tags.each do |tag| %>
+          <%= link_to "<span>#{tag}</span>".html_safe, url(:blog, :tag, :name => tag), :class => 'tag', :rel => 'tag' %>
+      <% end %>
+    </div>
+    <%= blog.content.gsub(/<\/?.*?>/, "").truncate(350).html_safe %>
   </div>
+
   <div class="info clearfix">
     <div class="fr">
-			<span class="author"><%= blog.account.name %></span>
+      <span class="author"><%= blog.account.name %></span>
       <span class="time"><%= time_ago_in_words(blog.created_at) %>发表</span>
       <span class="edit"><%= time_ago_in_words(blog.content_updated_at) %>更新</span>
       <span class="views" title="浏览次数"><%= view_count %>次浏览</span>

@@ -1,13 +1,18 @@
+# encoding: utf-8
+
 class Blog < ActiveRecord::Base
   acts_as_cached(:version => 1, :expires_in => 1.week)
   acts_as_taggable
 
-  attr_protected :account_id, :blog_content_id
+  attr_protected :account_id, :blog_content_id, :blog_content_en_id
   
   after_save :clean_cache
   before_destroy :clean_cache
   
-  belongs_to :blog_content, :dependent => :destroy 
+  belongs_to :blog_content, :dependent => :destroy
+  belongs_to :blog_content_en, :class_name => "BlogContent", :foreign_key => "blog_content_en_id", :dependent => :destroy
+  belongs_to :category
+
   belongs_to :account, :counter_cache => true
   has_many :comments, :class_name => 'BlogComment', :dependent => :destroy
   has_many :attachments, :dependent => :destroy
@@ -16,7 +21,7 @@ class Blog < ActiveRecord::Base
   validates :title, :length => {:in => 3..50}
   
   delegate :content, :to => :blog_content, :allow_nil => true
-  
+
   # virtual property for setting tag_list
   def user_tags
     self.tag_list.join(" , ")
@@ -36,10 +41,22 @@ class Blog < ActiveRecord::Base
     self.content_updated_at = Time.now
   end
 
+  # virtual property for blog_content_en's content body
+  def content_en=(value)            # must prepend self otherwise do not update blog_content
+    self.blog_content_en ||= BlogContent.new
+    self.blog_content_en.content = value
+    self.content_updated_at = Time.now
+  end
+
+  def content_en  #can't use delegate method
+    self.blog_content_en.nil? ? nil : self.blog_content_en.content
+  end
+
   def update_blog(param_hash)
     self.transaction do
       update_attributes!(param_hash)
       blog_content.save!
+      blog_content_en.save!
       save!
     end
   rescue

@@ -1,8 +1,12 @@
-# Robbin's website  
+# The api of the website
 
-<http://robbinfan.com>
+<http://onecoin.im>
 
-This is my personal website project.
+This is a website project powered by Ember.js(ember-cli) and Padrino(Grape).It provides many nice tools to track the
+<onecoin.eu>'s info, and to help members to make better decisions.
+
+这是一个用Ember.js作为前端框架，Padrino作为后台Api驱动的Web应用。该网站提供了很多好工具用于跟踪维卡比官网最新通告信息，帮助会员作出
+更好投资决定。
 
 ## System requirements
 
@@ -40,4 +44,17 @@ remove such lines in `Gemfile` and run with thin.
     gem 'kgio'
     gem 'zbatery'
 
-## MIT License
+## Thanks
+
+1. ember.js: http://emberjs.com/
+2. ember-cli: https://github.com/ember-cli/ember-cli
+3. padrino:  http://www.padrinorb.com/
+4. grape:    http://intridea.github.io/grape
+5. robbin:   https://github.com/robbin/robbin_site
+
+## Note
+
+维卡币是比特币的升级版本，第一个由正规公司运作的加密货币。目前处于推广阶段，想要把握机遇、成就梦想的朋友欢迎加入我们
+
+    微信：kubying
+    链接: http://onecoin.eu/signup/onecoinjr [团队合作可以获得更多奖励]

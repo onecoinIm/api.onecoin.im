@@ -1,13 +1,13 @@
 <% cache("#{CACHE_PREFIX}/layout/right", :expires_in => 1.day) do %>
 
-<h3>肉饼铺子微信号</h3>
+<h3>微信扫扫，了解更多</h3>
 <div class="tag">
-	<%= image_tag("robbin_foods_shop.jpg", :alt => "肉饼铺子微信订阅号", :title => "肉饼铺子微信订阅号") %>
+	<%= image_tag("weixin.jpg", :alt => "扫描二维码加微信公众号", :title => "扫描二维码加微信公众号", :height => '200px', :width => '200px') %>
 </div>
 
-<h3>文章分类</h3>
+<h3>标签文章</h3>
 <div class="tag">
-  <% Blog.cached_tag_cloud.select {|t| t.count > 2}.each do |tag| %>
+  <% Blog.cached_tag_cloud.select {|t| t.count > 1}.each do |tag| %>
   <%= link_to "#{tag.name}<span>#{tag.count}</span>".html_safe, url(:blog, :tag, :name => tag.name) %>
   <% end %>
 </div>

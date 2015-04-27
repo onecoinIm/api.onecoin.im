@@ -1,0 +1,149 @@
+<div class="container container-inner register-box">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="reg-box">
+        <div id="row">
+          <h5>注册</h5>
+
+          <div class="reg-submit-box frontForms">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="bg-danger hidden"></div>
+                <form action="https://www.onecoin.eu/signup/onecoinjr" id="frontRegFormOneStep"
+                      method="post" accept-charset="utf-8">
+
+                  <input type="hidden" name="sponsor" value="110975">
+
+                                    <span id="username_tooltip" class="tooltip-icon fa fa-question pull-right" title=""
+                                          data-original-title="选择一个唯一的用户名。这将是您的个人推荐人链接。"></span>
+
+                  <div class="form-group accUsername has-error">
+                    <label for="username">用户名</label>
+                    <input type="text" name="username" value="" class="form-control">
+
+                    <div class="clear">&nbsp;</div>
+                  </div>
+                                    <span id="email_tooltip" class="tooltip-icon fa fa-question pull-right" title=""
+                                          data-original-title="您可用相同的电子邮件注册几个用户名。"></span>
+
+                  <div class="form-group accEmail">
+                    <label for="email">电子邮件</label>
+                    <input type="text" name="email" value="" class="form-control">
+
+                    <div class="clear">&nbsp;</div>
+                  </div>
+                                    <span id="password_tooltip" class="tooltip-icon fa fa-question pull-right" title=""
+                                          data-original-title="选择一个包含大写字母、小写字母和数字的强密码。"></span>
+
+                  <div class="form-group accPassword">
+                    <label for="password">密码</label>
+                    <input type="password" name="password" value="" class="form-control">
+
+                    <div class="clear">&nbsp;</div>
+                  </div>
+                  <div class="form-group accPasswordConfirm">
+                    <label for="confirm_password">确认密码</label>
+                    <input type="password" name="confirm_password" value="" class="form-control">
+
+                    <div class="clear">&nbsp;</div>
+                  </div>
+                  <div class="form-group accFirstName">
+                    <label for="first_name">名字</label>
+                    <input type="text" name="first_name" value="" class="form-control">
+
+                    <div class="clear">&nbsp;</div>
+                  </div>
+                  <div class="form-group accLastName">
+                    <label for="last_name">姓氏</label>
+                    <input type="text" name="last_name" value="" class="form-control">
+
+                    <div class="clear">&nbsp;</div>
+                  </div>
+                  <div class="form-group accCountry">
+                    <label for="country">国家</label>
+                    <select name="country" class="form-control country_select">
+                      <option value="" selected="selected">选择国家</option>
+                      <option value="CN">China</option>
+                      <option value="HK">Hong Kong</option>
+                      <option value="IN">India</option>
+                      <option value="ID">Indonesia</option>
+                      <option value="MY">Malaysia</option>
+                      <option value="PH">Philippines</option>
+                      <option value="SE">Sweden</option>
+                      <option value="TH">Thailand</option>
+                      <option value="GB">United Kingdom</option>
+                    </select>
+
+                    <div class="clear">&nbsp;</div>
+                  </div>
+                                    <span id="mobile_tooltip" class="tooltip-icon fa fa-question pull-right" title=""
+                                          data-original-title="请输入正确的号码因为我们会将您的免费电子钱包与您的个人号码绑定。"></span>
+
+                  <div class="form-group accMobile">
+                    <label for="mobile">手机</label>
+                    <input type="text" name="mobile" value="" class="form-control ">
+
+                    <div class="clear">&nbsp;</div>
+                  </div>
+                  <div class="form-group accCaptcha">
+                    <label for="security_code">安全码</label> <br>
+                    <input type="text" name="captcha" value="" class="captcha_input">
+                    <img src="http://www.onecoin.eu/img/captcha/1427851751.0646.jpg" width="150"
+                         height="32" style="border:0;" alt=" ">
+
+                    <div class="clear">&nbsp;</div>
+                  </div>
+                  <div class="form-group Corporate">
+                    <input type="checkbox" name="corporate" value="">&nbsp;&nbsp;
+                    <label>企业客户</label>
+
+                    <div class="clear">&nbsp;</div>
+                  </div>
+                  <div class="form-group accOver18">
+                    <input type="checkbox" name="over_18" value="1" checked="checked">
+                    <label for="over_18">接受 <a href="https://www.onecoin.eu/#"
+                                               data-target="#tacModal" data-toggle="modal">条款与条件</a></label>
+
+                    <div class="clear">&nbsp;</div>
+                  </div>
+                  <div class="form-group Privacy">
+                    <input type="checkbox" name="privacy" value="1" checked="checked">&nbsp;&nbsp;
+                    <label for="over_18">接受 <a href="https://www.onecoin.eu/#"
+                                               data-target="#privModal" data-toggle="modal">隐私政策</a></label>
+
+                    <div class="clear">&nbsp;</div>
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" name="" value="开始"
+                           class="btn  btn-block  btn-submit pull-right" id="regOneStep"><img
+                  src="/img/ajax-loader.gif" class="hidden" id="ajaxLoader">
+                  </div>
+
+                </form>
+
+
+              </div>
+            </div>
+          </div>
+          <!-- col -->
+        </div>
+        <!-- mail-box -->
+
+      </div>
+      <!-- reg-box -->
+      <div class="bg-success hidden"></div>
+      <div class="VerifNotRecieved hidden"><a
+      href="mailto:support@onecoin.eu?Subject=Verification%20not%20received">如果您未收到验证电子邮件请联系客户支持</a><br>
+
+        <div>
+          <br>
+          <a href="#" id="forgot-password" data-target="#verCodeModal" data-toggle="modal">重新发送验证电子邮件。</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :javascripts do %>
+    <%= javascript_include_tag 'app-frontend' %>
+<% end %>

@@ -1,22 +1,22 @@
 development: &default
   session_secret: '1234567890'
   site_url: 'http://localhost:3000'
-  site_title: 'robbin的自言自语'
-  site_motto: 'Small is beautiful, constraint is liberty.'
-  site_description: '范凯个人网站，发表个人原创的博客文章和学习笔记，包括互联网产品，研发和运营类的文章'
-  show_me_url: 'http://robbinfan.com/blog/28/about-robbin'
+  site_title: 'ONECOIN.IM'
+  site_motto: '维卡币操盘手:追踪最新动态，分享投资技巧，提供操盘工具'
+  site_description: '维卡币（中国）官方网站，人工翻译最新通告，提供专业投资资讯和投资工具'
+  show_me_url: 'https://github.com/onecoinIm/api.onecoin.im'
   blog_search_ping: false
   google_cse: '007540752216561218107:cgbwg20yn_o'
   weibo_api_key: '1234567890'
   weibo_api_secret: '1234567890'
-  weibo_redirect_uri: 'http://robbinfan.com/weibo_callback'
+  weibo_redirect_uri: 'http://onecoin.im/weibo_callback'
   weibo_uid: '1654762921'
   weibo_uid_verifier: '6bd0aff2'
-  
+
 test: 
   <<: *default
 
 production:
   <<: *default
-  site_url: 'http://robbinfan.com'
+  site_url: 'http://onecoin.im'
   blog_search_ping: true

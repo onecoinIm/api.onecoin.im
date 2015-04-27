@@ -1,0 +1,36 @@
+<% @title = @page.slug_url %>
+
+<% content_for :stylesheets do %>
+    <%= stylesheet_link_tag 'default/github' %>
+<% end %>
+
+<div class="left">
+  <div class="con">
+    <div class="content">
+   
+      <div class="text">
+        <%= @page.body.html_safe %>
+      </div>
+      <div class="info clearfix">
+        <div class="fr">
+          <span class="author"><%= @page.account.name %></span>
+          <span class="time"><%= time_ago_in_words(@page.created_at) %>发表</span>
+          <span class="edit"><%= time_ago_in_words(@page.updated_at) %>更新</span>
+          <span class="views" title="浏览次数"><%= @page.view_count %>次浏览</span>
+        </div>
+      </div>
+    </div>
+    <!-- content -->
+
+    <div class="share clearfix">
+      <span><%= partial '/blog/weibo_share', :locals => {:content => (@page.slug_url + ":" + @page.body).truncate(120).gsub(/\r|\n/, '')} %></span>
+    </div>
+    <!-- share -->
+  </div>
+  <!-- con -->
+
+</div><!-- left -->
+
+<div class="right">
+  <%= partial '/blog/right' %>
+</div><!-- right -->

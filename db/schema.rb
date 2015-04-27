@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 17) do
+ActiveRecord::Schema.define(:version => 21) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 17) do
     t.string   "profile_url"
     t.string   "profile_image_url"
     t.string   "logo"
+    t.string   "surname"
   end
 
   create_table "attachments", :force => true do |t|
@@ -63,10 +64,31 @@ ActiveRecord::Schema.define(:version => 17) do
     t.datetime "content_updated_at"
     t.boolean  "commentable",        :default => true, :null => false
     t.string   "cached_tag_list"
+    t.integer  "category_id"
+    t.integer  "blog_content_en_id"
+    t.boolean  "has_i18n"
   end
 
   add_index "blogs", ["account_id"], :name => "index_blogs_on_account_id"
+  add_index "blogs", ["blog_content_id"], :name => "index_blogs_on_blog_content_id"
   add_index "blogs", ["content_updated_at"], :name => "index_blogs_on_content_updated_at"
+
+  create_table "categories", :force => true do |t|
+    t.string   "name",       :limit => 26
+    t.string   "role",       :limit => 20, :default => "any"
+    t.boolean  "is_menu",                  :default => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "slug_url",   :limit => 50,                :null => false
+    t.text     "body"
+    t.integer  "view_count",               :default => 0
+    t.integer  "account_id",                              :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+  end
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

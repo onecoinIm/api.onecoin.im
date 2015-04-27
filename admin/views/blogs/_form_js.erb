@@ -1,0 +1,58 @@
+<% content_for :javascripts do %>
+    <!--< %= javascript_include_tag 'highlight.min' %>-->
+    <%= javascript_include_tag 'ueditor/ueditor.config.js', :charset => "utf-8" %>
+    <%= javascript_include_tag 'ueditor/ueditor.all.min.js', :charset => "utf-8" %>
+    <%= javascript_include_tag 'ueditor/lang/zh-cn/zh-cn.js', :charset => "utf-8" %>
+
+    <script type="text/javascript">
+        var editorConfig = {
+            initialFrameHeight: 500
+//            , serverUrl: '/server/ueditor/controller.php'
+            , toolbars: [[
+                'fullscreen', 'undo', 'redo', '|',
+                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'removeformat', 'formatmatch', 'autotypeset', 'pasteplain', '|',
+                'insertorderedlist', 'insertunorderedlist', '|',
+                'paragraph', 'fontsize', 'link', '|',
+                'horizontal', 'spechars', 'insertimage', 'emotion', 'scrawl', 'attachment', 'searchreplace', 'insertcode',
+                'template',  'source'
+            ]]
+        };
+
+        $(function () {
+            // Editor init,这种处理很难受
+            UE.getEditor('container-cn', editorConfig);
+
+            // form validation
+            $('form#editor input[type=submit]').click(function () {
+                var error_info = '';
+                $('div#form-error-info').html('');
+                if ($('input#blog_title').val().length < 3) {
+                    error_info += '<span>文章标题太短了;</span>';
+                }
+                if ($('textarea#blog_content').val().length < 10) {
+                    error_info += '<span>文章内容太少了;</span>';
+                }
+                var slugUrl = $('input#blog_slug_url').val();
+                if (slugUrl.length > 0) {
+                    var re = /^[a-zA-Z0-9\-]{1,}$/;
+                    if (!re.test(slugUrl)) {
+                        error_info += '<span>URL格式错了：只允许字母数字横线</span>';
+                    }
+                }
+                if (error_info.length > 0) {
+                    $('div#form-error-info').html(error_info);
+                    return false;
+                }
+            });
+
+            $('form#editor input#has_i18n').change(function () {
+                if(this.checked){
+                    $('#form-body-en').removeClass('hidden');
+                    UE.getEditor('container-en', editorConfig);
+                } else {
+                    $('#form-body-en').addClass('hidden');
+                }
+            });
+        });
+    </script>
+<% end %>

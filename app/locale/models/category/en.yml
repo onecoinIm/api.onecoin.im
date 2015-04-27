@@ -1,0 +1,10 @@
+en:
+  models:
+    category:
+      name: Category
+      attributes:
+        id: Id
+        name: Name
+        role: Role
+        created_at: Created at
+

@@ -1,9 +1,9 @@
 # encoding: utf-8
 require 'xmlrpc/client'
 
-RobbinSite.helpers do
+ApiOnecoinIm::OnecoinIm.helpers do
   include Padrino::Cache::Helpers::Fragment
-  
+
   # authentication helpers
   def current_account
     return @current_account if @current_account
@@ -13,11 +13,11 @@ RobbinSite.helpers do
       return @current_account
     end
   end
-  
+
   def account_login?
     current_account ? true : false
   end
-  
+
   def account_admin?
     current_account && current_account.admin? ? true : false
   end
@@ -25,7 +25,7 @@ RobbinSite.helpers do
   def account_commenter?
     current_account && current_account.commenter? ? true : false
   end
-  
+
   # blog article url generator for SEO purpose
   def blog_url(blog, mime_type = :html)
     if blog.slug_url.blank?
@@ -36,7 +36,7 @@ RobbinSite.helpers do
     slug_url << "." << mime_type.to_s if mime_type != :html
     slug_url
   end
-  
+
   # generate commenter logo and link
   def commenter_logo(commenter)
     if commenter.provider && commenter.provider == 'weibo'
@@ -45,21 +45,21 @@ RobbinSite.helpers do
       link_to image_tag(commenter.logo.url, :alt => commenter.name), APP_CONFIG['site_url']
     end
   end
-  
+
   def commenter_link(commenter)
     if commenter.provider && commenter.provider == 'weibo'
       link_to commenter.name, "http://weibo.com/#{commenter.profile_url}", :target => '_blank', :rel => 'nofollow'
     else
       link_to commenter.name, APP_CONFIG['site_url']
     end
-  end  
-  
+  end
+
   # blog search ping for SEO purpose
   def ping_search_engine(blog)
     # http://www.google.cn/intl/zh-CN/help/blogsearch/pinging_API.html
     # http://www.baidu.com/search/blogsearch_help.html
     baidu = XMLRPC::Client.new2("http://ping.baidu.com/ping/RPC2")
-    baidu.timeout = 5  # set timeout 5 seconds
+    baidu.timeout = 5 # set timeout 5 seconds
     baidu.call("weblogUpdates.extendedPing",
                APP_CONFIG['site_title'],
                APP_CONFIG['site_url'],
@@ -67,7 +67,7 @@ RobbinSite.helpers do
                APP_CONFIG['site_url'] + '/rss')
 
     google = XMLRPC::Client.new2("http://blogsearch.google.com/ping/RPC2")
-    google.timeout = 5  # set timeout 5 seconds
+    google.timeout = 5 # set timeout 5 seconds
     google.call("weblogUpdates.extendedPing",
                 APP_CONFIG['site_title'],
                 APP_CONFIG['site_url'],
@@ -76,5 +76,14 @@ RobbinSite.helpers do
                 blog.cached_tag_list.gsub(/,/, '|'))
   rescue Exception => e
     logger.error e
+  end
+
+  # 是否作者？
+  def is_owner_of(blog)
+    current_account && blog.account == current_account ? true : false
+  end
+
+  def menus
+    Category.menus
   end
 end

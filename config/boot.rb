@@ -1,11 +1,11 @@
 # Defines our constants
-PADRINO_ENV  = ENV['PADRINO_ENV'] ||= ENV['RACK_ENV'] ||= 'development'  unless defined?(PADRINO_ENV)
+RACK_ENV = ENV['PADRINO_ENV'] ||= ENV['RACK_ENV'] ||= 'development' unless defined?(RACK_ENV)
 PADRINO_ROOT = File.expand_path('../..', __FILE__) unless defined?(PADRINO_ROOT)
 
 # Load our dependencies
 require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
-Bundler.require(:default, PADRINO_ENV)
+Bundler.require(:default, RACK_ENV)
 
 ##
 # ## Enable devel logging
@@ -13,13 +13,14 @@ Bundler.require(:default, PADRINO_ENV)
 # Padrino::Logger::Config[:development][:log_level]  = :devel
 # Padrino::Logger::Config[:development][:log_static] = true
 #
-# ## Configure your I18n
-#
-I18n.default_locale = 'zh_cn'
+# 记录生产环境下的log
+Padrino::Logger::Config[:production] = {:log_level => :devel, :format_datetime => " [%Y-%m-%d %H:%M:%S] ", :stream => :to_file}
 
-Dir.glob(File.expand_path("#{PADRINO_ROOT}/locale", __FILE__) + '/**/*.yml').each do |file|
-  I18n.load_path << file
-end
+# 全局的语言文件，默认放在#{PADRINO_ROOT}/app/locale之下，这里不需要再设置
+#
+# Dir.glob(File.expand_path("#{PADRINO_ROOT}/locale", __FILE__) + '/**/*.yml').each do |file|
+#   I18n.load_path << file
+# end
 
 # ## Configure your HTML5 data helpers
 #
@@ -38,6 +39,8 @@ end
 # Add your before (RE)load hooks here
 #
 Padrino.before_load do
+  # Configure your I18n
+  I18n.default_locale = 'zh_cn'
 end
 
 ##
@@ -47,18 +50,18 @@ Padrino.after_load do
 end
 
 # load project config
-APP_CONFIG = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__) + '/app_config.yml')[PADRINO_ENV]
+APP_CONFIG = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__) + '/app_config.yml')[RACK_ENV]
 
 # initialize memcache and ActiveRecord Cache
 Dalli.logger = logger
 APP_CACHE = ActiveSupport::Cache::DalliStore.new("127.0.0.1")
-CACHE_PREFIX = "robbin"
+CACHE_PREFIX = "onecoinim"
 SecondLevelCache.configure do |config|
   config.cache_store = APP_CACHE
   config.logger = logger
   config.cache_key_prefix = CACHE_PREFIX
 end
-  
+
 # Set acts_as_taggable
 ActsAsTaggableOn.remove_unused_tags = true
 ActsAsTaggableOn.strict_case_match = true

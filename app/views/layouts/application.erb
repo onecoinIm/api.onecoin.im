@@ -1,78 +1,114 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0">
-    <title><%= @title ? "#{@title} - #{APP_CONFIG['site_title']}": APP_CONFIG['site_title'] %></title>
-    <meta name="description" content="<%= @description || APP_CONFIG['site_description'] %>">
-    <meta name="author" content="Robbin Fan">
-    <link href="/rss" rel="alternate" title="<%= APP_CONFIG['site_title'] %>" type="application/rss+xml" />
-    <%= stylesheet_link_tag 'default/document', 'default/content' %>
-    <%= yield_content :stylesheets %>
-  </head>
-  <body>
-    <div id="flash-notice"></div>
-    <div class="header">
-      <div class="wrap">
-      	<div class="user_img"><img src="/images/website.png" width="80" height="80" alt="website icon"></div>
-        <div class="blog_title"><%= APP_CONFIG['site_title'] %></div>
-        <div class="write">
-        <% unless account_login? -%>
-          <%= link_to '登录', url(:login) -%>
-        <% else -%>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0">
+  <title><%= @title ? "#{@title} - #{APP_CONFIG['site_title']}" : APP_CONFIG['site_title'] %></title>
+  <meta name="description" content="<%= @description || APP_CONFIG['site_description'] %>">
+  <meta name="author" content="onecoin.im">
+  <%= favicon_tag "favicon.ico" %>
+  <link href="/rss" rel="alternate" title="<%= APP_CONFIG['site_title'] %>" type="application/rss+xml"/>
+  <%= stylesheet_link_tag '../admin/stylesheets/bootstrap', 'default/document', 'default/content', 'default/popup' %>
+  <%= yield_content :stylesheets %>
+</head>
+<body>
+<div id="flash-notice"></div>
+<div class="header">
+  <div class="wrap">
+    <div class="user_img"><img src="/images/logo.png" height="80" alt="website icon"></div>
+    <div class="blog_title"><%= APP_CONFIG['site_title'] %></div>
+    <div class="write">
+      <% unless account_login? -%>
+          <%= link_to '登录', url('/admin/sessions/new') -%>
+      <% else -%>
           <%= current_account.name -%>
           <% if account_admin? -%>
-          <%= link_to '写文章', url(:admin, :new_blog) -%>
-          <%= link_to '管理', url(:admin, :index), :class => 'admin' -%>
+              <%= link_to '写文章', url('/admin/blogs/new') -%>
+              <%= link_to '管理', url('/admin'), :class => 'admin' -%>
           <% end -%>
-          <%= button_to '退出', url(:logout), :method => :delete -%>
-        <% end -%>
-        </div>
-        <div class="blog_motto"><%= APP_CONFIG['site_motto'] %></div>
-      </div>
-    </div><!-- header -->
-    
-    <div class="nav">
-      <div class="wrap clearfix">
-      	<div class="search fr">
-          <form action="http://guge.io/" id="cse-search-box" method="get" onsubmit="return false;">
-            <input id="search-box" name="q" type="text" placeholder="Search" value="<%= params[:q] %>">
-            <button id="search-button"></button>
-          </form>
-        </div>
-        <ul>
-          <li><a href="/" <%= "class='current'".html_safe if @nav == 'home' %>>首页</a></li>
-          <li><a href="/blog" <%= "class='current'".html_safe if @nav == 'blog' %>>博客</a></li>
-          <li><a href="/tag" <%= "class='current'".html_safe if @nav == 'tag' %>>分类</a></li>
-          <li><a href="/weibo" <%= "class='current'".html_safe if @nav == 'weibo' %>>微博</a></li>
-          <li><a href="<%= APP_CONFIG['show_me_url'] %>" <%= "class='current'".html_safe if @nav == 'me' %>>关于</a></li>
-        </ul>
-      </div>
-    </div><!-- nav -->
-    
-    <div class="wrap clearfix">
-      <%= yield %>
-    </div><!-- content -->
-    
-    <div class="footer">
-    	<a href="http://weibo.com/robbinfan" class="weibo">Weibo</a>
-      <a href="https://github.com/robbin" class="github">Github</a>      
-      <a href="mailto:fankai@gmail.com" class="mail">Email</a>
-      <div class="powered-by">
-        <a href="http://robbinfan.com" title="robbin的自言自语">Powered by robbin</a>&nbsp;
-				<a href="http://www.elvenui.com/" title="Elvenui" target="_blank">Design by Elvenui</a>
-      </div>
-    </div><!-- footer -->
-    <%= javascript_include_tag 'jquery', 'jquery-ujs', 'application' %>
-    <%= yield_content :javascripts %>
-    <script type="text/javascript">
-      $('form#cse-search-box button#search-button').click(function(){
-      	window.open('http://guge.io/#q=' + $('form#cse-search-box input#search-box').val() + '+site:robbinfan.com');
-      	return false;
-      });
-      <% if flash[:notice] %>
-      $('div#flash-notice').html('<%= flash[:notice] %>').show().fadeOut(3000);
+          <%= button_to '退出', url("/admin/sessions/destroy"), :method => :delete -%>
+      <% end -%>
+    </div>
+    <div class="blog_motto"><%= APP_CONFIG['site_motto'] %></div>
+  </div>
+</div>
+<!-- header -->
+
+<div class="nav">
+  <div class="wrap clearfix">
+    <div class="search fr">
+      <form action="http://guge.io/" id="cse-search-box" method="get" onsubmit="return false;">
+        <input id="search-box" name="q" type="text" placeholder="Search" value="<%= params[:q] %>">
+        <button id="search-button"></button>
+      </form>
+    </div>
+    <ul>
+      <li><a href="/" <%= "class='current'".html_safe if @nav == 'home' %>><%= t('home') %></a></li>
+      <% menus.each do |item| %>
+          <li role="presentation">
+            <a href="/<%= item.name %>" <%= "class='current active'".html_safe if @nav == item.name %>>
+              <%= t(item.name) %>
+            </a>
+          </li>
       <% end %>
-    </script>
-  </body>
+      <!--<li><a href="/fq" < %= "class='current'".html_safe if @nav == 'fq' %>>< %= t('fq') %></a></li>-->
+      <li><a href="/about" <%= "class='current'".html_safe if @nav == 'me' %>><%= t('about') %></a></li>
+    </ul>
+  </div>
+</div>
+<!-- nav -->
+
+<div class="wrap clearfix">
+  <%= yield %>
+</div>
+<!-- content -->
+
+<div class="footer">
+  <a href="https://onecoin.eu"><%= t('official_site') %></a>
+  ·
+  <a href="https://github.com/onecoinim"><%= t('onecoin_im_source') %></a>
+  ·
+  <a href="/blackboard"><%= t('blackboard') %></a>
+  ·
+  <a href="mailto:kubying@163.com">Email</a>
+
+  <div class="powered-by">
+    Copyright &copy; 2015 <%= APP_CONFIG['site_title'] %> - Powered by
+    <a href="http://www.padrinorb.com/" title="Padrino" target="_blank">Padrino</a>
+    (<a href="http://intridea.github.io/grape/" title="Grape" target="_blank">Grape</a>)
+    &
+    <a href="http://emberjs.com/" title="Ember.js" target="_blank">Ember.js</a>
+    (
+    <a href="http://ember-cli.com/" title="Ember-cli" target="_blank">Ember-cli</a>
+    )
+    <b>|</b>
+    Design by
+    <a href="http://www.elvenui.com/" title="Elvenui" target="_blank">Elvenui</a>
+  </div>
+</div>
+<!-- footer -->
+
+<script type="text/javascript" src="/admin/javascripts/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="/admin/javascripts/jquery-ujs.js"></script>
+
+<%= javascript_include_tag 'application' %>
+<%= yield_content :javascripts %>
+
+<script type="text/javascript">
+    $('form#cse-search-box button#search-button').click(function () {
+        window.open('http://guge.io/#q=' + $('form#cse-search-box input#search-box').val() + '+site:onecoin.im');
+        return false;
+    });
+    <% if flash[:notice] %>
+    $('div#flash-notice').html('<%= flash[:notice] %>').show().fadeOut(3000);
+    <% end %>
+
+    $(function () {
+        uParse('.text', {
+            rootPath: '/'
+        })
+    });
+</script>
+
+</body>
 </html>

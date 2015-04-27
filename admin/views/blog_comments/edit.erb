@@ -1,0 +1,10 @@
+<ul class="nav nav-tabs">
+  <li> <%= link_to tag_icon(:list, pat(:list)), url(:blog_comments, :index) %></li>
+  <li> <%= link_to tag_icon(:plus, pat(:new)), url(:blog_comments, :new) %></li>
+  <li class="active"> <%= link_to tag_icon(:edit, pat(:edit)), url(:blog_comments, :edit, :id => @blog_comment.id) %></li>
+</ul>
+<div class="tabs-content">
+  <% form_for :blog_comment, url(:blog_comments, :update, :id => @blog_comment.id), :method => :put, :class => 'form-horizontal' do |f| %>
+    <%= partial 'blog_comments/form', :locals => { :f => f } %>
+  <% end %>
+</div>

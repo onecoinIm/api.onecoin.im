@@ -1,0 +1,27 @@
+zh_cn:
+  models:
+    account:
+      name: 帐号
+      attributes:
+        id: Id
+        name: 名字
+        email: Email
+        role: 角色
+        created_at: 创建时间
+        uid: Uid
+        provider: Provider
+        comments_count: 评论数量
+        profile_url: 帐号地址
+        profile_image_url: 帐号图片地址
+        logo: Logo
+        surname: 姓
+
+  activerecord:
+    errors:
+      models:
+        account:
+          attributes:
+            email:
+              taken: 该邮箱已经被注册，请使用其他邮箱。
+            password:
+              too_short: 密码长度太短

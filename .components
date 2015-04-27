@@ -1,4 +1,5 @@
 ---
+:namespace: ApiOnecoinIm
 :orm: activerecord
 :test: minitest
 :mock: none

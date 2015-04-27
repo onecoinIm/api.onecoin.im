@@ -1,0 +1,79 @@
+<% error = @page.errors.include?(:slug_url) %>
+<fieldset class='control-group <%= error ? 'has-error' : '' %>'>
+  <%= f.label :slug_url, :class => 'control-label' %>
+  <div class='controls'>
+    <%= f.text_field :slug_url, :class => 'form-control input-xlarge input-with-feedback', :autofocus => true %>
+    <span class='help-inline'><%= error ? f.error_message_on(:slug_url) : "Ex: 请用英文词汇，如：about" %></span>
+  </div>
+</fieldset>
+
+<% error = @page.errors.include?(:body) %>
+<fieldset class='control-group <%= error ? 'has-error' : '' %>'>
+  <%= f.label :body, :class => 'control-label' %>
+  <div class='controls'>
+    <div class="row">
+      <div class="col-md-12">
+        <script id="container" name="page[body]" type="text/plain">
+          <%= content_html_safe_of(@page, :body) || "这里写上您的内容" %>
+        </script>
+      </div>
+    </div>
+  </div>
+</fieldset>
+
+<div class="form-actions">
+  <%= f.submit pat(:save), :class => 'btn btn-primary' %>
+  &nbsp;
+  <%= f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue' %>
+  &nbsp;
+  <%= link_to pat(:cancel), url(:pages, :index), :class => 'btn btn-default' %>
+</div>
+
+<% content_for :javascripts do %>
+    <!--< %= javascript_include_tag 'highlight.min' %>-->
+    <%= javascript_include_tag 'ueditor/ueditor.config.js', :charset => "utf-8" %>
+    <%= javascript_include_tag 'ueditor/ueditor.all.min.js', :charset => "utf-8" %>
+    <%= javascript_include_tag 'ueditor/lang/zh-cn/zh-cn.js', :charset => "utf-8" %>
+
+    <script type="text/javascript">
+        var editorConfig = {
+            initialFrameHeight: 500
+//            , serverUrl: '/server/ueditor/controller.php'
+            , toolbars: [[
+                'fullscreen', 'undo', 'redo', '|',
+                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|',
+                'insertorderedlist', 'insertunorderedlist', '|',
+                'paragraph', 'fontsize', 'justifycenter', 'link', 'anchor', '|',
+                'horizontal', 'spechars', 'insertimage', 'emotion', 'scrawl', 'attachment', 'searchreplace', 'insertcode',
+                'template',  'source'
+            ]]
+        };
+
+        $(function () {
+            // Editor init,这种处理很难受
+            UE.getEditor('container', editorConfig);
+
+            // form validation
+            $('form#editor input[type=submit]').click(function () {
+                var error_info = '';
+
+                var slugUrl = $('input#page_slug_url').val();
+                if (slugUrl.length > 0) {
+                    var re = /^[a-zA-Z0-9\-]{1,}$/;
+                    if (!re.test(slugUrl)) {
+                        error_info += '<span>URL格式错了：只允许字母数字横线</span>';
+                    }
+                }
+
+                if ($('textarea#page_body').val().length < 10) {
+                    error_info += '<span>内容太少了;</span>';
+                }
+
+                if (error_info.length > 0) {
+                    $('div#form-error-info').html(error_info);
+                    return false;
+                }
+            });
+        });
+    </script>
+<% end %>

@@ -1,0 +1,16 @@
+<div id="attachment_<%= attachment.id %>">
+  <%= link_to attachment.file.file.identifier, attachment.file.url, :target => '_blank' %>
+  <%= link_to tag_icon('trash-o'), :rel => :tooltip, :title => "#{pat(:delete)} attachment", :class => 'list-row-action-delete-one' %>
+  <div class="popover list-row-action-popover-delete-one left">
+    <div class=arrow> </div>
+    <h3 class=popover-title><%= pat(:delete, :model => "attachment") %></h3>
+    <div class=popover-content>
+      <%- form_tag url(:attachments, :delete, :id => attachment.id), :method => :delete do %>
+          <%= submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small' %>
+          <div class="btn btn-default btn-small cancel"><%= pat(:cancel) %></div>
+      <% end %>
+    </div>
+  </div>
+  <a href="#" onclick="window.parent.$('#blog_content').insertAtCaret('\n![<%= attachment.file.file.identifier %>](<%= APP_CONFIG['site_url'] %><%= attachment.file.url %>)\n\n');return false;"><%= image_tag 'btn_sticky.png', :title => '将图片插入编辑器' %></a>
+</div>
+

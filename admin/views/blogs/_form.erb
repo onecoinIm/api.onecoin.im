@@ -1,0 +1,81 @@
+<% error = @blog.errors.include?(:title) %>
+<fieldset class='control-group <%= error ? 'has-error' : '' %>'>
+  <%= form.label :title, :class => 'control-label' %>
+  <div class='controls'>
+    <%= form.text_field :title, :class => 'form-control input-xlarge input-with-feedback', :autofocus => true %>
+    <span class='help-inline'><%= error ? form.error_message_on(:title) : "Ex: 不要少于6个字" %></span>
+  </div>
+</fieldset>
+
+<% error = @blog.errors.include?(:category) %>
+<fieldset class='control-group <%= error ? 'has-error' : '' %>'>
+  <%= form.label mt(:category), :class => 'control-label' %>
+  <div class='controls'>
+    <%= form.select :category_id, :options => categories, :class => 'input-xlarge input-with-feedback', :autofocus => true %>
+  </div>
+</fieldset>
+
+<fieldset>
+  <%= form.label mt(:has_i18n), :class => 'control-label' %>
+  <div class='controls'>
+    <%= form.check_box :has_i18n, :id => 'has_i18n' %>
+  </div>
+</fieldset>
+
+<% error = @blog.errors.include?(:blog_content_id) %>
+<fieldset class='control-group <%= error ? 'has-error' : '' %>'>
+  <%= form.label '内容', :class => 'control-label' %>
+  <div class='controls'>
+    <div class="row">
+      <div class="col-md-6 bs-example hidden" id="form-body-en">
+        <span class="label label-primary">英文原文</span>
+        <script id="container-en" name="blog[content_en]" type="text/plain">
+          <%= content_html_safe_of(@blog, :content_en) || "这里写英文原文" %>
+        </script>
+      </div>
+      <div class="col-md-6" id="form-body-cn">
+        <span class="label label-primary">中文内容</span>
+        <script id="container-cn" name="blog[content]" type="text/plain">
+          <%= content_html_safe_of(@blog, :content) || "这里写上您的内容" %>
+        </script>
+      </div>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset class='control-group <%= error ? 'has-error' : '' %>'>
+  <%= form.label :cached_tag_list, :class => 'control-label' %>
+  <div class='controls'>
+    <%= form.text_field :cached_tag_list, :class => 'form-control input-xlarge input-with-feedback', :placeholder => '用逗号分开，不超过3个，Tag必须是字母数字空格下划线和中文' %>
+    <div class="tag">
+      <% Blog.cached_tag_cloud.each do |tag| %>
+          <a href="#" class="tag" rel="tag"><span><%= tag %></span></a>
+      <% end %>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset class='control-group <%= error ? 'has-error' : '' %>'>
+  <%= form.label :commentable, :class => 'control-label' %>
+  <div class='controls'>
+    <%= form.check_box :commentable, :style => 'display:inline;' %>
+  </div>
+</fieldset>
+
+<% error = @blog.errors.include?(:slug_url) %>
+<fieldset class='control-group <%= error ? 'has-error' : '' %>'>
+  <%= form.label :slug_url, :class => 'control-label' %>
+  <div class='controls'>
+    <%= form.text_field :slug_url, :class => 'form-control input-xlarge input-with-feedback' %>
+    <span class='help-inline'><%= error ? form.error_message_on(:slug_url) : "Ex:填写URL英文关键词，用-连接,如:first-blog" %></span>
+  </div>
+</fieldset>
+
+<div class="form-actions">
+  <%= form.submit pat(:save), :class => 'btn btn-primary' %>
+  &nbsp;
+  <%= form.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue' %>
+  &nbsp;
+  <%= link_to pat(:cancel), url(:blogs, :index), :class => 'btn btn-default' %>
+</div>
+<div id="container"></div>

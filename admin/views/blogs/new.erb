@@ -1,0 +1,12 @@
+<ul class="nav nav-tabs">
+  <li> <%= link_to tag_icon(:list, pat(:list)), url(:blogs, :index) %></li>
+  <li class="active"> <%= link_to tag_icon(:plus, pat(:new)), url(:blogs, :new) %></li>
+</ul>
+
+<div class="tabs-content">
+  <% form_for @blog, url(:blogs, :create), :class => 'form-horizontal', :id => 'editor' do |f| %>
+      <%= partial 'blogs/form', :locals => {:form => f} %>
+  <% end %>
+</div>
+
+<%= partial 'blogs/form_js' %>

@@ -1,0 +1,11 @@
+zh_cn:
+  models:
+    category:
+      name: 类别
+      attributes:
+        id: Id
+        name: 名称
+        role: 角色
+        is_menu: 是否主页菜单
+        created_at: 创建时间
+

@@ -16,4 +16,13 @@ if ENV['RACK_ENV'] == 'production'
   use Rack::CommonLogger, logger
 end
 
+# Supports CORS via Rack::CORS, part of the rack-cors gem.
+require 'rack/cors'
+use Rack::Cors do
+  allow do
+    origins '*'
+    resource '*', :headers => :any, :methods => [:get, :post, :put, :delete, :options]
+  end
+end
+
 run Padrino.application

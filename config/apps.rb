@@ -4,4 +4,8 @@ Padrino.configure_apps do
 end
 
 # Mounts the core application for this project
-Padrino.mount('RobbinSite').to('/')
+
+Padrino.mount('ApiOnecoinIm::Api', :app_file => Padrino.root('api/app.rb')).to('/api')
+
+Padrino.mount("ApiOnecoinIm::Admin", :app_file => Padrino.root('admin/app.rb')).to("/admin")
+Padrino.mount('ApiOnecoinIm::OnecoinIm').to('/')

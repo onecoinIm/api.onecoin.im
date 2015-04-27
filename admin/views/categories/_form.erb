@@ -1,0 +1,30 @@
+<% error = @category.errors.include?(:name) %>
+<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+  <%= f.label :name, :class => 'control-label' %>
+  <div class='controls'>
+    <%= f.text_field :name, :class => 'form-control input-xlarge input-with-feedback', :autofocus => true %>
+    <span class='help-inline'><%= error ? f.error_message_on(:name) : "Ex: 请使用英文字符，如：category_name" %></span>
+  </div>
+</fieldset>
+
+<fieldset class='control-group'>
+  <%= f.label :is_menu, :class => 'control-label' %>
+  <div class='controls'>
+    <%= f.check_box :is_menu %>
+  </div>
+</fieldset>
+
+<fieldset class='control-group'>
+  <%= f.label :role, :class => 'control-label' %>
+  <div class='controls'>
+    <%= f.select :role, :options => access_control.roles %>
+  </div>
+</fieldset>
+
+<div class="form-actions">
+  <%= f.submit pat(:save), :class => 'btn btn-primary' %>
+  &nbsp;
+  <%= f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue' %>
+  &nbsp;
+  <%= link_to pat(:cancel), url(:categories, :index), :class => 'btn btn-default' %>
+</div>
