@@ -25,4 +25,10 @@ use Rack::Cors do
   end
 end
 
+# Api:https://github.com/LTe/grape-rabl
+require 'grape/rabl'
+use Rack::Config do |env|
+  env['api.tilt.root'] = PADRINO_ROOT + '/api/views'
+end
+
 run Padrino.application

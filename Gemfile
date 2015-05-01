@@ -25,6 +25,7 @@ gem 'rest-client'
 
 ## api requirements
 gem 'grape'
+gem 'grape-rabl'
 gem 'rack-cors', :require => 'rack/cors'
 
 ## 使用类似devise注册管理插件

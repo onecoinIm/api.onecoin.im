@@ -3,6 +3,7 @@ module ApiOnecoinIm
 
     version 'v1', using: :path
     format :json
+    formatter :json, Grape::Formatter::Rabl
 
     ##
     # Caching support.
