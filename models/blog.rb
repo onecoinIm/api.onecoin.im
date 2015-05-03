@@ -22,6 +22,8 @@ class Blog < ActiveRecord::Base
   
   delegate :content, :to => :blog_content, :allow_nil => true
 
+  scope :categoried, lambda { |category| where(:category_id => Category.where("name = ?", category).first) }
+
   # virtual property for setting tag_list
   def user_tags
     self.tag_list.join(" , ")
