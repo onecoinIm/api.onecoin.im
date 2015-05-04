@@ -1,7 +1,7 @@
 object @blog
 
-attributes :id, :title, :slug_url, :view_count, :commentable,:has_i18n, :created_at,:comments_count,
-           :content_updated_at, :cached_tag_list
+attributes :id, :title, :slug_url, :view_count, :commentable,:has_i18n, :created_at, :comments_count,
+           :content_updated_at, :cached_tags
 
 node(:category) { |m| m.category.name }
 

@@ -6,9 +6,14 @@ module ApiOnecoinIm
 
       desc "获得文章列表."
       get :rabl => "blogs" do
-        # 尽量减少服务器IO，把数据过滤工作交给客户端
-        # @blogs = Blog.categoried(params[:category]).order('id DESC').page(params[:page])
-        @blogs = Blog.order('id DESC').page(params[:page])
+        #
+        # hot_blogs:传参数 ?hot=1 或其他数值
+        #
+        @blogs = if params[:hot]
+          Blog.hot_blogs(params[:hot])
+        else
+          Blog.order('id DESC').page(params[:page])
+        end
       end
 
       get ':id', :rabl => "blog" do
