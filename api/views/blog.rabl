@@ -1,7 +1,7 @@
 object @blog
 
-attributes :id, :title, :slug_url, :view_count, :commentable,:has_i18n, :created_at, :comments_count,
-           :content_updated_at, :cached_tags
+attributes :id, :title, :slug_url, :view_count, :commentable, :has_i18n, :comments_count,
+           :cached_tags, :content_updated_at, :created_at
 
 node(:category) { |m| m.category.name }
 
@@ -18,3 +18,8 @@ end
 child :account => :user do
   extends "account"
 end
+
+child :comments => :comments do |b|
+  extends "comments"
+end
+
