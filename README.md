@@ -51,11 +51,3 @@ remove such lines in `Gemfile` and run with thin.
 3. padrino:  http://www.padrinorb.com/
 4. grape:    http://intridea.github.io/grape
 5. robbin:   https://github.com/robbin/robbin_site
-
-## Note
-
-维卡币是比特币的升级版本，第一个由正规公司运作的加密货币。目前处于推广阶段，我们的团队也正在急剧扩张，选择一个好团队，帮您获得更多奖励，
-欢迎加入：
-
-* 微信：onecoinim
-* 链接: [请点击这里] (http://onecoin.eu/signup/onecoinjr)
