@@ -11,4 +11,5 @@ Padrino.mount("ApiOnecoinIm::Admin", :app_file => Padrino.root('admin/app.rb')).
 
 Padrino.mount('ApiOnecoinIm::OnecoinIm', :app_file => Padrino.root('app/app.rb')).to('/app')
 
-Padrino.mount('ApiOnecoinIm::Emberjs', :app_file => Padrino.root('emberjs/app.rb')).to('/')
+# fixme delete
+# Padrino.mount('ApiOnecoinIm::Emberjs', :app_file => Padrino.root('emberjs/app.rb')).to('/')
