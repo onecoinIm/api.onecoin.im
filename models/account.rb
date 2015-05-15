@@ -25,6 +25,7 @@ class Account < ActiveRecord::Base
 
   # Callbacks
   before_save :encrypt_password, :if => :password_required
+  # before_save :ensure_authentication_token
 
   ##
   # This method is for authentication purpose.
@@ -86,4 +87,17 @@ class Account < ActiveRecord::Base
   def native_login_required
     provider.blank? && password_required
   end
+
+  # def ensure_authentication_token
+  #   if self.token.blank?
+  #     self.token = generate_authentication_token
+  #   end
+  # end
+  #
+  # def generate_authentication_token
+  #   loop do
+  #     t = SecureRandom.hex
+  #     break t unless Account.where(token: t).first
+  #   end
+  # end
 end

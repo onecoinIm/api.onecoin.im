@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 21) do
+ActiveRecord::Schema.define(:version => 22) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 21) do
     t.string   "profile_image_url"
     t.string   "logo"
     t.string   "surname"
+    t.string   "token"
   end
 
   create_table "attachments", :force => true do |t|

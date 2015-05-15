@@ -1,5 +1,5 @@
 # Defines our constants
-RACK_ENV = ENV['PADRINO_ENV'] ||= ENV['RACK_ENV'] ||= 'development' unless defined?(RACK_ENV)
+RACK_ENV = ENV['RACK_ENV'] ||= 'development' unless defined?(RACK_ENV)
 PADRINO_ROOT = File.expand_path('../..', __FILE__) unless defined?(PADRINO_ROOT)
 
 # Load our dependencies
@@ -41,6 +41,24 @@ Padrino::Logger::Config[:production] = {:log_level => :devel, :format_datetime =
 Padrino.before_load do
   # Configure your I18n
   I18n.default_locale = 'zh_cn'
+
+  #fixme 暂时解决  bundle exec rake routes 命令错误。
+  # https://github.com/eivan/PadrinoEatsGrape/issues/2
+  class Grape::Route
+    def name
+      "API-#{route_version}" #命名路由应该无法使用了
+    end
+    def request_methods
+      Set.new [route_method]
+    end
+    def original_path
+      route_path
+    end
+
+    def controller
+      name
+    end
+  end
 end
 
 ##

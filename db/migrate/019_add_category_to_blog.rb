@@ -38,8 +38,8 @@ class AddCategoryToBlog < ActiveRecord::Migration
 
   def self.down
     change_table :blogs do |t|
-      t.remove :category_id
-      t.remove :blog_content_en_id
+      t.integer :category_id
+      t.integer :blog_content_en_id
     end
 
     drop_table :categories
