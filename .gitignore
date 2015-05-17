@@ -5,6 +5,7 @@ tmp/**/*
 bin/*
 .bundle/
 config/database.yml
+config/database.prod.yml
 config/app_config.yml
 config/nginx.conf
 config/deploy.rb

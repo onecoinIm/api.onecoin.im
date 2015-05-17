@@ -1,0 +1,10 @@
+en:
+  models:
+    attachment:
+      name: Attachment
+      attributes:
+        id: Id
+        file: File
+        account_id: Account
+        blog_id: Blog
+        created_at: Created at

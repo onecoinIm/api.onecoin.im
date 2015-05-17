@@ -1,0 +1,30 @@
+en:
+  #/admin menu
+  Blogs: 'Notes'
+  Blog comments: 'Comments'
+  Attachments: 'Attachments'
+  Accounts: "Users"
+  Categories: Category
+
+  #/ menu & category
+  announcement: 通告
+  manual: 秘籍
+  news: 新闻
+  tutorial: 问答
+
+  # operate
+  save: 保存
+  cancel: 取消
+  signup_success: 注册成功
+  signup_error: 注册失败
+
+  # layout/application
+  home: 首页
+  about: 关于
+  official_site: 官方网站
+  onecoin_im_source: 本站源码（本站开源）
+
+  #admin下的翻译使用pat方法
+  padrino:
+    admin:
+      hello: hello

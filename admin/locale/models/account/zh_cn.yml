@@ -1,0 +1,34 @@
+zh_cn:
+  models:
+    account:
+      name: 帐号
+      attributes:
+        id: Id
+        name: 名字
+        email: Email
+        role: 角色
+        created_at: 创建时间
+        uid: Uid
+        provider: Provider
+        comments_count: 评论数量
+        profile_url: 帐号地址
+        profile_image_url: 帐号图片地址
+        logo: Logo
+        surname: 姓
+
+  activerecord:
+    errors:
+      models:
+        account:
+          attributes:
+            email:
+              blank: 邮箱不能为空
+              too_short: 邮箱长度太短
+              taken: 该邮箱已经被注册，请使用其他邮箱。
+              invalid: 邮箱格式不正确
+            password:
+              blank: 密码不能为空
+              too_short: 密码长度太短
+              confirmation: 两次密码输入不一致
+            password_confirmation:
+              blank: 确认密码不能为空

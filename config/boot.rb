@@ -16,8 +16,7 @@ Bundler.require(:default, RACK_ENV)
 # 记录生产环境下的log
 Padrino::Logger::Config[:production] = {:log_level => :devel, :format_datetime => " [%Y-%m-%d %H:%M:%S] ", :stream => :to_file}
 
-# 全局的语言文件，默认放在#{PADRINO_ROOT}/app/locale之下，这里不需要再设置
-#
+# 语言文件，默认放在#{PADRINO_ROOT}/【app】/locale之下，可以作为全局使用，因此不需要再设置
 # Dir.glob(File.expand_path("#{PADRINO_ROOT}/locale", __FILE__) + '/**/*.yml').each do |file|
 #   I18n.load_path << file
 # end
@@ -48,9 +47,11 @@ Padrino.before_load do
     def name
       "API-#{route_version}" #命名路由应该无法使用了
     end
+
     def request_methods
       Set.new [route_method]
     end
+
     def original_path
       route_path
     end

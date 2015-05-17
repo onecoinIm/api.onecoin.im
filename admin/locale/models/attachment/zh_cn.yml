@@ -1,0 +1,10 @@
+zh_cn:
+  models:
+    attachment:
+      name: 附件
+      attributes:
+        id: Id
+        file: 文件
+        account_id: 用户
+        blog_id: 博客
+        created_at: 创建时间

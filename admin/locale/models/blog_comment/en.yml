@@ -1,0 +1,10 @@
+en:
+  models:
+    blog_comment:
+      name: Comment
+      attributes:
+        id: Id
+        account_id: Account
+        blog_id: Note
+        content: Content
+        created_at: Created at

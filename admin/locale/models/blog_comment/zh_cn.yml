@@ -1,0 +1,10 @@
+zh_cn:
+  models:
+    blog_comment:
+      name: 评论
+      attributes:
+        id: Id
+        account_id: 用户
+        blog_id: 通告
+        content: 内容
+        created_at: 创建时间

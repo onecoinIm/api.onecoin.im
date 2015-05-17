@@ -1,5 +1,6 @@
 module ApiOnecoinIm
   class Api < Grape::API
+    helpers Padrino::Helpers
 
     version 'v1', using: :path
     format :json

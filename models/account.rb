@@ -2,8 +2,6 @@ require 'openssl'
 require 'base64'
 
 class Account < ActiveRecord::Base
-  # revise :authenticatable, :database_authenticatable, :confirmable, :recoverable, :invitable
-
   attr_accessor :password, :password_confirmation
   acts_as_cached
   mount_uploader :logo, AvatarUploader
