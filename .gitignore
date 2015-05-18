@@ -7,8 +7,8 @@ bin/*
 config/app_config.yml
 config/database.yml
 config/database.prod.yml
-config/database.local.yml
 config/nginx.conf
+config/nginx.local.conf
 config/deploy.rb
 config/deploy/onecoin*
 public/uploads
