@@ -5,16 +5,6 @@ module ApiOnecoinIm
     register Padrino::Helpers
     register WillPaginate::Sinatra
 
-    # revise
-    # register Padrino::Admin::AccessControl
-    # register Padrino::Revise
-    # revise_for :accounts
-    # set :session_id, :dragons
-    # enable  :sessions
-    # disable :store_location
-    # set :login_page, '/sessions/new'
-    ##end revise
-
     ##
     # Application configuration options
     #

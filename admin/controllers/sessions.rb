@@ -1,3 +1,4 @@
+# fixme 全部移至Api和客户端认证，本方法将被删除
 ApiOnecoinIm::Admin.controllers :sessions do
   # login
   get :new do
@@ -7,7 +8,7 @@ ApiOnecoinIm::Admin.controllers :sessions do
   post :create do
     if account = Account.authenticate(params[:email], params[:password])
 
-      # session[:account_id] = account.id
+      session[:account_id] = account.id
       response.set_cookie('user', {:value => account.encrypt_cookie_value, :path => "/", :expires => 2.weeks.since, :httponly => true}) if params[:remember_me]
 
       set_current_account(account)

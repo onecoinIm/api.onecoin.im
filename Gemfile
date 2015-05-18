@@ -27,8 +27,9 @@ gem 'rest-client'
 gem 'grape'
 gem 'grape-rabl'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'padrino-warden'
 
-## 使用类似devise注册管理插件
+## 使用类似devise认证管理插件
 # gem 'padrino-responders', :git => 'https://github.com/bookworm/padrino-responders.git'
 # gem 'revise'
 
