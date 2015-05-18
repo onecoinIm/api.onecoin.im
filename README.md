@@ -51,3 +51,8 @@ remove such lines in `Gemfile` and run with thin.
 3. padrino:  http://www.padrinorb.com/
 4. grape:    http://intridea.github.io/grape
 5. robbin:   https://github.com/robbin/robbin_site
+
+
+## License
+
+[The MIT License (MIT)](https://github.com/onecoinim/api.onecoin.im/blob/master/LICENSE)

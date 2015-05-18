@@ -4,14 +4,12 @@ module ApiOnecoinIm
   class Api
 
     resource :blogs do
-
-      before do
-        logger.info("before ----------------------------------")
-      end
+      # before do
+      #   # warden.authenticate! :scope => :public
+      # end
 
       desc "获得文章列表."
       get :rabl => "blogs" do
-        env['warden'].authenticate! :my_token
         #
         # hot_blogs:传参数 ?hot=1 或其他数值
         #

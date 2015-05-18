@@ -1,5 +1,6 @@
 # encoding: utf-8
-# require 'warden'
+require 'grape'
+require 'warden-oauth2'
 
 module ApiOnecoinIm
   class Api < Grape::API
@@ -13,44 +14,27 @@ module ApiOnecoinIm
 
     # helpers Padrino::Mailer
     helpers Padrino::Helpers
-    helpers Padrino::Warden
 
     #GrapeApi设置
     version 'v1', using: :path
     format :json
     formatter :json, Grape::Formatter::Rabl
 
+    # fixme
     # 添加Api认证
-    # https://github.com/jondot/padrino-warden
-    # https://github.com/althafhameez/authenticating_api_rails_devise/blob/master/app/api/api.rb
-    # https://github.com/geekazoid/grape-warden/blob/master/app/my_api.rb [use]
-    # Configure Warden
+    # 参考：https://ruby-china.org/topics/14656
     use Warden::Manager do |config|
-      config.scope_defaults :default,
-                            # Set your authorization strategy
-                            strategies: [:my_token]
-                            # Route to redirect to when warden.authenticate! returns a false answer.
-                            # action: '/unauthenticated'
-      config.failure_app = lambda { |env| [401, {}, ["Not authorized"]] }
-    end
-    #
-    Warden::Strategies.add(:my_token) do
-      def valid?
-        # Validate that the access token is properly formatted.
-        # Currently only checks that it's actually a string.
-        request.env["HTTP_AUTH_TOKEN"].is_a?(String)
-      end
+      config.strategies.add :bearer, Warden::OAuth2::Strategies::Bearer
+      config.strategies.add :client, Warden::OAuth2::Strategies::Client
+      config.strategies.add :public, Warden::OAuth2::Strategies::Public
 
-      def authenticate!
-        token = env['HTTP_AUTH_TOKEN'] || env['rack.request.query_hash']['AUTH_TOKEN']
-        if token == 'abc123'
-          logger.info("*************************************************************")
-          success!(Account.new)
-        else
-          logger.info("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-          throw :warden
-        end
-      end
+      config.default_strategies :bearer, :client, :public
+      config.failure_app = Warden::OAuth2::FailureApp
     end
+
+    helpers do
+      def warden; env['warden'] end
+    end
+
   end
 end

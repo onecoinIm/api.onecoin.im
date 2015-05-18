@@ -27,7 +27,7 @@ gem 'rest-client'
 gem 'grape'
 gem 'grape-rabl'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'padrino-warden'
+gem 'warden-oauth2', :git => "https://github.com/mojied/warden-oauth2.git"
 
 ## 使用类似devise认证管理插件
 # gem 'padrino-responders', :git => 'https://github.com/bookworm/padrino-responders.git'
