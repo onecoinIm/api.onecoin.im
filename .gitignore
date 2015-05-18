@@ -4,9 +4,10 @@ log/**/*
 tmp/**/*
 bin/*
 .bundle/
+config/app_config.yml
 config/database.yml
 config/database.prod.yml
-config/app_config.yml
+config/database.local.yml
 config/nginx.conf
 config/deploy.rb
 config/deploy/onecoin*
