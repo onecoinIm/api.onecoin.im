@@ -1,6 +1,6 @@
 Padrino.configure_apps do
+  # 这里可以设置全局使用的参数
   # enable :sessions
-  set :session_secret, APP_CONFIG['session_secret']
 end
 
 # Mounts the core application for this project

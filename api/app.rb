@@ -4,15 +4,6 @@ require 'warden-oauth2'
 
 module ApiOnecoinIm
   class Api < Grape::API
-
-    # 修改cookie与客户端一致
-    # use Rack::Session::Cookie, :key => 'im_onecoin',
-    #     :domain => 'http://localhost',
-    #     :path => '/',
-    #     :expire_after => 6000,
-    #     :secret => 'change_me',
-    #     :old_secret => 'also_change_me'
-
     # helpers Padrino::Mailer
     helpers Padrino::Helpers
 
@@ -42,6 +33,9 @@ module ApiOnecoinIm
       def current_user
         logger.info "**************************************************************************"
         logger.info cookies.to_s
+        if cookies['rack.session']
+          logger.info cookies['rack.session']
+        end
         # Account.find_by_token(cookies[:in_onecoin][:secure][:access_token])
       end
     end
