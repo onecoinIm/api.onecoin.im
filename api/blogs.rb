@@ -13,6 +13,10 @@ module ApiOnecoinIm
         #
         # hot_blogs:传参数 ?hot=1 或其他数值
         #
+        # logger.info "+++++++++++++++++++++++++++"
+        # logger.info current_user.name if
+        current_user
+
         @blogs = if params[:hot]
           Blog.hot_blogs(params[:hot])
         else

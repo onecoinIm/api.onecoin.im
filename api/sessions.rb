@@ -6,20 +6,14 @@ module ApiOnecoinIm
 
       desc "登录."
       post :create do
-        if params[:user][:email] && params[:user][:password]
-          account = Account.authenticate(params[:user][:email], params[:user][:password])
+        if params[:username] && params[:password]
+          account = Account.authenticate(params[:username], params[:password])
           if account
-            #后台需要
-            # session[:account_id] = account.id
-            # response.set_cookie('user', {:value => account.encrypt_cookie_value, :path => "/", :expires => 2.weeks.since, :httponly => true}) if params[:remember_me]
-            #
-            # set_current_account(account)
+            account.token = SecureRandom.hex
+            # account.token = account.encrypt_cookie_value
 
-            account.token = account.encrypt_cookie_value
-
-            #fixme 需要保存到服务器吗？
-            # account.save!
-            {:token => account.token, :token_type => "bearer", :path => "/", :expires => 600, :httponly => true, :email => account.email, :user_id => account.id}
+            account.save!
+            {:access_token => account.token, :token_type => "bearer"}
           else
             error!({"error" => '用户名或密码不正确'}, 422)
           end

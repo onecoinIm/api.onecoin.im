@@ -2,12 +2,12 @@ module ApiOnecoinIm
   class Admin < Padrino::Application
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
     # 修改cookie与客户端一致
-    use Rack::Session::Cookie, :key => 'im_onecoin',
-        # :domain => '',
-        :path => '/',
-        :expire_after => 600
-        # :secret => 'change_me',
-        # :old_secret => 'also_change_me'
+    # use Rack::Session::Cookie, :key => 'im_onecoin',
+    #     # :domain => '',
+    #     :path => '/',
+    #     :expire_after => 6000,
+    #     :secret => 'change_me',
+    #     :old_secret => 'also_change_me'
 
     register Padrino::Mailer
     register Padrino::Helpers
@@ -15,11 +15,11 @@ module ApiOnecoinIm
     register WillPaginate::Sinatra
 
     set :admin_model, 'Account'
-    set :session_id, 'account_id'
+    # set :session_id, 'account_id'
     set :login_page,  '/sessions/new'
 
-    enable :sessions
-    enable :store_location
+    # enable :sessions
+    # enable :store_location
 
     access_control.roles_for :any do |role|
       role.protect '/'
