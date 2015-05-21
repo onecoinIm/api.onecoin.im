@@ -1,7 +1,0 @@
-en:
-  models:
-    blog_content:
-      name: Content
-      attributes:
-        id: Id
-        content: Content

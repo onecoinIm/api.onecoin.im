@@ -1,36 +1,39 @@
 zh_cn:
   #管理后台 菜单和模块
-  Blogs: 文章
-  Blog comments: 评论
-  Attachments: 附件
-  Accounts: 用户
-  Categories: 类别
-  Pages: 页面
+  Blogs: "文章"
+  Blog comments: '评论'
+  Attachments: "附件"
+  Accounts: "用户"
+  Categories: "类别"
+  Pages: "页面"
 
   #公共类别和菜单
-  announcement: 通告
-  manual: 秘籍
-  news: 新闻
-  tutorial: 教程
-  fq: 问答
+  announcement: "通告"
+  manual: "秘籍"
+  news: "新闻"
+  tutorial: "教程"
+  fq: "问答"
 
   # 操作
-  save: 保存
-  cancel: 取消
-  signup_success: 注册成功
-  signup_error: 注册失败
+  save: '保存'
+  cancel: "取消"
+  signup_success: "注册成功"
+  signup_error: "注册失败"
 
   # footer
-  home: 首页
-  about: 关于
-  official_site: 维卡币官网
-  blackboard: 开发手记
-  onecoin_im_source: 本站代码
+  home: "首页"
+  about: "关于"
+  official_site: "维卡币官网"
+  blackboard: "开发手记"
+  onecoin_im_source: "本站代码"
 
   # blog/show
-  content_en: 英文原文
+  content_en: "英文原文"
 
   #admin下的翻译使用pat方法
   padrino:
     admin:
-      hello: hello
+      custom_errors:
+        '401':
+          title: "401错误"
+          description: "您没有权限访问该资源"

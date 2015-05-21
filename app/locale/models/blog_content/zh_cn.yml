@@ -1,7 +1,0 @@
-zh_cn:
-  models:
-    blog_content:
-      name: 内容
-      attributes:
-        id: Id
-        content: 内容

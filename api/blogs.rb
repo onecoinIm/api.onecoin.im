@@ -15,7 +15,7 @@ module ApiOnecoinIm
         #
         # logger.info "+++++++++++++++++++++++++++"
         # logger.info current_user.name if
-        current_user
+        # current_user
 
         @blogs = if params[:hot]
           Blog.hot_blogs(params[:hot])

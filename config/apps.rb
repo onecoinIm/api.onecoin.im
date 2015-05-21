@@ -1,6 +1,6 @@
 Padrino.configure_apps do
   # 这里可以设置全局使用的参数
-  # enable :sessions
+  disable :sessions
 end
 
 # Mounts the core application for this project

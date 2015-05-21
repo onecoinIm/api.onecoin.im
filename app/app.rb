@@ -21,7 +21,6 @@ module ApiOnecoinIm
     # layout  :my_layout              # Layout can be in views/layouts/foo.ext or views/foo.ext (default :application)
     #
 
-    enable :sessions
     mime_type :md, 'text/plain'
 
     error ActiveRecord::RecordNotFound do
