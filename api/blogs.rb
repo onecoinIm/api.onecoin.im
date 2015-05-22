@@ -26,6 +26,8 @@ module ApiOnecoinIm
 
       get ':id', :rabl => "blog" do
         @blog = Blog.find(params[:id])
+        @blog.increment_view_count
+        @blog
       end
     end
 
