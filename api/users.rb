@@ -4,6 +4,11 @@ module ApiOnecoinIm
   class Api
     resource :users do
 
+      get ":id" do
+        @user = Account.find(params[:id])
+        @user
+      end
+
       desc "注册用户."
       post do
         @account = Account.new(params[:user])
@@ -18,6 +23,7 @@ module ApiOnecoinIm
           error!({ "errors" => @account.errors}, 422)
         end
       end
+
     end
   end
 end

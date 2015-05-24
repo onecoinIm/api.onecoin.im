@@ -13,7 +13,7 @@ module ApiOnecoinIm
             # account.token = account.encrypt_cookie_value
 
             account.save!
-            {:access_token => account.token, :token_type => "bearer"}
+            {:access_token => account.token, :token_type => "bearer", :account_id => account.id}
           else
             error!({"error" => '用户名或密码不正确'}, 422)
           end

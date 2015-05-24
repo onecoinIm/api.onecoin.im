@@ -9,6 +9,12 @@ module ApiOnecoinIm
         limit = params[:recent] || 5
         @comments = BlogComment.order('id DESC').limit(limit)
       end
+
+      desc "添加文章评论."
+      post :rabl => "comments" do
+        # halt 403 unless blog.commentable?
+        @comment = BlogComment.create(params[:comment])
+      end
     end
   end
 end

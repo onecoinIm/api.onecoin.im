@@ -66,6 +66,9 @@ end
 # Add your after (RE)load hooks here
 #
 Padrino.after_load do
+  # 解决'could not obtain a database connection within 5 seconds错误
+  # 参考：http://stackoverflow.com/questions/13675879/activerecordconnectiontimeouterror
+  ActiveRecord::Base.clear_active_connections!
 end
 
 # load project config
