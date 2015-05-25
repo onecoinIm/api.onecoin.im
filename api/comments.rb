@@ -17,6 +17,8 @@ module ApiOnecoinIm
       desc "添加文章评论."
       post :rabl => "comments" do
         # halt 403 unless blog.commentable?
+        params[:comment][:content] = params[:comment][:body]
+        params[:comment].delete(:body)
         @comment = BlogComment.create(params[:comment])
       end
     end
