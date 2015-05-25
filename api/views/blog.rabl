@@ -19,7 +19,9 @@ child :account => :user do
   extends "account"
 end
 
-child :comments => :comments do |b|
-  extends "comments"
+node :comments  do |b|
+  b.comments.map do |c|
+    c.id
+  end
 end
 

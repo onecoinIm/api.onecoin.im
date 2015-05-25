@@ -10,6 +10,10 @@ module ApiOnecoinIm
         @comments = BlogComment.order('id DESC').limit(limit)
       end
 
+      get ":id", :rabl => "comment" do
+        @comment = BlogComment.find(params[:id])
+      end
+
       desc "添加文章评论."
       post :rabl => "comments" do
         # halt 403 unless blog.commentable?

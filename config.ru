@@ -16,7 +16,10 @@ if ENV['RACK_ENV'] == 'production'
   use Rack::CommonLogger, logger
 end
 
+#
+# fixme 修改产品环境下的配置
 # Supports CORS via Rack::CORS, part of the rack-cors gem.
+#
 require 'rack/cors'
 use Rack::Cors do
   allow do
