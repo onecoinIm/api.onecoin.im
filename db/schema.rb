@@ -28,6 +28,9 @@ ActiveRecord::Schema.define(:version => 22) do
     t.string   "logo"
     t.string   "surname"
     t.string   "token"
+    t.string   "title"
+    t.string   "url"
+    t.string   "original"
   end
 
   create_table "attachments", :force => true do |t|

@@ -1,6 +1,5 @@
 <ul class="nav nav-tabs">
   <li> <%= link_to tag_icon(:list, pat(:list)), url(:attachments, :index) %></li>
-  <li> <%= link_to tag_icon(:plus, pat(:new)), url(:attachments, :new) %></li>
   <li class="active"> <%= link_to tag_icon(:edit, pat(:edit)), url(:attachments, :edit, :id => @attachment.id) %></li>
 </ul>
 <div class="tabs-content">
