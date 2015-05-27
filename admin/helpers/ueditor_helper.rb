@@ -4,7 +4,7 @@
 module ApiOnecoinIm
   class Admin
     module UeditorHelper
-      def _create(upfile)
+      def upload(upfile)
 
         if params[:upfile]
           filename = params[:upfile][:filename]
@@ -16,7 +16,7 @@ module ApiOnecoinIm
           end
 
           {
-              url: folder + "/" + filename,
+              url: filename,
               title: filename,
               original: filename,
               state: 'SUCCESS'

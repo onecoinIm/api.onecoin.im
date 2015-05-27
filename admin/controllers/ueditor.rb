@@ -9,7 +9,6 @@ ApiOnecoinIm::Admin.controllers :ueditor do
         render 'config'
 
       when 'uploadimage'
-        logger.info 'Please upload.'
         redirect url(:ueditor, :uploadimage)
 
       when 'listimage'
@@ -27,15 +26,14 @@ ApiOnecoinIm::Admin.controllers :ueditor do
 
     case params[:action]
       when 'uploadimage'
-        logger.info "Uploading..."
-        result = _create params[:upfile]
+        result = upload(params[:upfile])
 
       when 'listimage'
         logger.info 'Please listimage.'
 
     end
 
-    {json: result}
+    result.to_json
   end
 
   # get :sample, :map => '/sample/url', :provides => [:any, :js] do
