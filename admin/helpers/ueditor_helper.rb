@@ -11,7 +11,7 @@ module ApiOnecoinIm
         upfile = params[:upfile]
         filename = upfile[:filename]
         file = upfile[:tempfile]
-        folder = upload_url + "images/"
+        folder = upload_url + "/images/"
 
         FileUtils.makedirs(folder) if !Dir.exist?(folder)
 
