@@ -1,15 +1,17 @@
 ApiOnecoinIm::Admin.controllers :ueditor do
   disable :layout
 
-  get :index, :provides => [:any, :json] do
+  # 列表 get: actions
+  get :index, :provides => [:json] do
     content_type :json
 
     case params[:action]
       when 'config'
+        @uploads = upload_path #上传的全部文件在 `/admin/uploads` 下
         render 'config'
 
-      when 'uploadimage'
-        redirect url(:ueditor, :uploadimage)
+      when 'listfile'
+        logger.info 'Please listfile.'
 
       when 'listimage'
         logger.info 'Please listimage.'
@@ -17,21 +19,30 @@ ApiOnecoinIm::Admin.controllers :ueditor do
     end
   end
 
-  get :uploadimage do
-    logger.info "I`m getting from uploadimage."
-  end
-
+  # 上传 post: actions
   post :index, :provides => [:json] do
     content_type :json
 
-    case params[:action]
-      when 'uploadimage'
-        result = upload(params[:upfile])
+    result = case params[:action]
+               # 上传图片
+               when 'uploadimage'
+                 upload_file
 
-      when 'listimage'
-        logger.info 'Please listimage.'
+               when 'uploadscrawl'
+                 logger.info 'Please uploadscrawl.'
+                 upload
 
-    end
+               when 'uploadvideo'
+                 logger.info 'Please uploadvideo.'
+                 upload(params[:upfile])
+
+               when 'catchimage'
+                 logger.info 'Please catchimage.'
+                 upload(params[:upfile])
+
+               else
+                 {:state => '请求地址出错'}
+             end
 
     result.to_json
   end
