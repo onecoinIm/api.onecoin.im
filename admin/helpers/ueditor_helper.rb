@@ -11,7 +11,9 @@ module ApiOnecoinIm
         upfile = params[:upfile]
         filename = upfile[:filename]
         file = upfile[:tempfile]
-        folder = upload_path + 'images'
+        folder = upload_url + "images/"
+
+        FileUtils.makedirs(folder) if !Dir.exist?(folder)
 
         File.open(File.join(folder, filename), 'wb') do |f|
           f.write file.read
@@ -40,9 +42,15 @@ module ApiOnecoinIm
         }
       end
 
-      # 上传路径 /admin/uploads
+      # 绝对路径 /admin/uploads
+      def upload_url
+        # url("/uploads/")
+        PADRINO_ROOT + "/public" + upload_path
+      end
+
+      # 相对路径 /admin/uploads
       def upload_path
-        url("/uploads/")
+        url("/uploads")
       end
 
       # 对应action的配置项
