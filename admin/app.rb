@@ -26,7 +26,7 @@ module ApiOnecoinIm
       role.project_module :pages, '/pages'
       role.project_module :blog_comments, '/blog_comments'
       role.project_module :categories, '/categories'
-      role.project_module :attachments, '/attachments'
+      # role.project_module :attachments, '/attachments'
       role.project_module :accounts, '/accounts'
     end
 

@@ -1,3 +1,4 @@
+# todo: 把Ueditor上传的文件集中在这里管理
 ApiOnecoinIm::Admin.controllers :attachments do
   get :index do
     @title = "Attachments"

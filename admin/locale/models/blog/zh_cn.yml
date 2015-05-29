@@ -5,7 +5,7 @@ zh_cn:
       attributes:
         id: Id
         title: 标题
-        slug_url: Url后缀
+        slug_url: 永久地址
         view_count: 浏览数量
         blog_content: 内容
         created_at: 创建时间
@@ -14,3 +14,4 @@ zh_cn:
         content_updated_at: 更新时间
         commentable: 可否评论
         cached_tag_list: 标签列表
+        has_i18n: 是否有英文

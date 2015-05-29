@@ -6,7 +6,7 @@ module ApiOnecoinIm
 
       desc "获得静态页面列表."
       get :rabl => "pages" do
-        @pages = Page.order('created_at DESC')
+        @pages = Page.all
       end
 
       get ':id', :rabl => "page" do

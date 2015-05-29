@@ -1,3 +1,50 @@
-<div class=base-text>
-  <p>这里是管理面板主页，即将提供各类统计和通知信息。。。</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">您的文章</h3>
+        </div>
+        <div class="panel-body">
+          <p>您已经发布 <%= @blogs.size %> 篇文章</p>
+        </div>
+        <% if @blogs.size > 0 %>
+            <!-- List group -->
+            <ul class="list-group">
+              <% @blogs.each_with_index do |blog, index| %>
+                  <% link_to url(:blogs, :edit, :id => blog.id), :class => 'list-group-item' do %>
+                      <span class="badge badge-info" title="浏览数"><%= blog.view_count %></span>
+                      <span class="badge badge-warning" title="评论数"><%= blog.comments_count %></span>
+                      <%= blog.title %>
+                  <% end %>
+              <% end %>
+            </ul>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">您的评论</h3>
+        </div>
+        <div class="panel-body">
+          <p>您已经发布 <%= @comments.size %> 条评论</p>
+          <%= link_to "查看详情", url(:blog_comments, :index) %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">对您文章的评论</h3>
+        </div>
+        <div class="panel-body">
+          <p>有 xx 人评论了您的文章</p>
+          <%= link_to "查看详情", url(:blog_comments, :index) %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

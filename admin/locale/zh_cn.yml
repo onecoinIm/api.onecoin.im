@@ -37,3 +37,6 @@ zh_cn:
         '401':
           title: "401错误"
           description: "您没有权限访问该资源"
+
+      blog: "博客"
+      new_title: "新建博客"

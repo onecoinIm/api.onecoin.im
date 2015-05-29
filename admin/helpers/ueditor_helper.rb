@@ -32,6 +32,27 @@ module ApiOnecoinIm
 
       end
 
+      # 图片列表
+      def list_images
+        folder = "/images"
+
+        list = []
+
+        Dir.foreach(upload_url + folder) do |file|
+          if [".", ".."].exclude? file
+            url = File.join(folder, file)
+            list << {"url" => url}
+          end
+        end
+
+        {
+            :state => "SUCCESS",
+            :list => list,
+            :start => 0,
+            :total => 20
+        }.to_json
+      end
+
       # 处理成功返回给客户端的状态信息
       def state_success(filename)
         {

@@ -16,7 +16,7 @@
 </fieldset>
 
 <fieldset>
-  <%= form.label mt(:has_i18n), :class => 'control-label' %>
+  <%= form.label :has_i18n, :class => 'control-label' %>
   <div class='controls'>
     <%= form.check_box :has_i18n, :id => 'has_i18n' %>
   </div>
@@ -59,15 +59,6 @@
   <%= form.label :commentable, :class => 'control-label' %>
   <div class='controls'>
     <%= form.check_box :commentable, :style => 'display:inline;' %>
-  </div>
-</fieldset>
-
-<% error = @blog.errors.include?(:slug_url) %>
-<fieldset class='control-group <%= error ? 'has-error' : '' %>'>
-  <%= form.label :slug_url, :class => 'control-label' %>
-  <div class='controls'>
-    <%= form.text_field :slug_url, :class => 'form-control input-xlarge input-with-feedback' %>
-    <span class='help-inline'><%= error ? form.error_message_on(:slug_url) : "Ex:填写URL英文关键词，用-连接,如:first-blog" %></span>
   </div>
 </fieldset>
 

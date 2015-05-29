@@ -7,7 +7,6 @@ class Account < ActiveRecord::Base
   mount_uploader :logo, AvatarUploader
   has_many :blogs
   has_many :blog_comments, :dependent => :destroy
-  has_many :attachments
   has_many :pages
 
   # Validations

@@ -14,7 +14,7 @@ ApiOnecoinIm::Admin.controllers :ueditor do
         logger.info 'Please listfile.'
 
       when 'listimage'
-        logger.info 'Please listimage.'
+        list_images
 
     end
   end
@@ -30,15 +30,15 @@ ApiOnecoinIm::Admin.controllers :ueditor do
 
                when 'uploadscrawl'
                  logger.info 'Please uploadscrawl.'
-                 upload
+                 upload_file
 
                when 'uploadvideo'
                  logger.info 'Please uploadvideo.'
-                 upload(params[:upfile])
+                 upload_file
 
                when 'catchimage'
                  logger.info 'Please catchimage.'
-                 upload(params[:upfile])
+                 upload_base64
 
                else
                  {:state => '请求地址出错'}

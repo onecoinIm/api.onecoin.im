@@ -57,6 +57,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    chinese_pinyin (0.7.0)
     coderay (1.1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -234,6 +235,7 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano3-nginx (~> 2.0)
   carrierwave
+  chinese_pinyin
   dalli
   database_cleaner
   erubis (~> 2.7.0)

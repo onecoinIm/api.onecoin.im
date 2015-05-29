@@ -7,7 +7,7 @@
     <![endif]-->
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <meta name=viewport content='width=device-width,initial-scale=1' />
-    <title><%= @title.present? ? "#{@title} | Padrino Admin" : "Padrino Admin" %></title>
+    <title><%= @title.present? ? "#{@title} | 维卡币操盘手" : "维卡币操盘手管理后台" %></title>
     <%= favicon_tag "favicon.ico" %>
     <!--<link href='http://fonts.googleapis.com/css?family=Varela' rel=stylesheet />-->
     <%= stylesheet_link_tag 'bootstrap', 'application' %>
@@ -54,10 +54,9 @@
       <div class='footer-wrapper container'>
         <p class='pull-left'>Copyright &copy; 2015 <%= APP_CONFIG['site_title'] %> - Powered by Padrino v.0.12.5</p>
         <ul class='pull-right footer-links'>
-          <li><%= link_to tag_icon(:home, 'web'), 'http://www.padrinorb.com', :target => :_blank, :class => 'footer-links-link' %></li>
-          <li><%= link_to tag_icon(:heart, 'blog'), 'http://www.padrinorb.com/blog', :target => :_blank, :class => 'footer-links-link' %></li>
-          <li><%= link_to tag_icon(:github, 'code'), 'https://github.com/padrino/padrino-framework', :target => :_blank, :class => 'footer-links-link' %></li>
-          <li><%= link_to tag_icon(:twitter, 'twitter'), 'http://twitter.com/padrinorb', :target => :_blank, :class => 'footer-links-link' %></li>
+          <li><%= link_to tag_icon(:home, 'web'), 'http://onecoin.im', :target => :_blank, :class => 'footer-links-link' %></li>
+          <li><%= link_to tag_icon(:heart, 'blog'), 'http://onecoin.im/blackboard', :target => :_blank, :class => 'footer-links-link' %></li>
+          <li><%= link_to tag_icon(:twitter, 'twitter'), 'http://twitter.com/onecoinim', :target => :_blank, :class => 'footer-links-link' %></li>
         </ul>
       </div>
     </footer>

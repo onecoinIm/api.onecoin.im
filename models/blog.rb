@@ -15,8 +15,7 @@ class Blog < ActiveRecord::Base
 
   belongs_to :account, :counter_cache => true
   has_many :comments, :class_name => 'BlogComment', :dependent => :destroy
-  has_many :attachments, :dependent => :destroy
-  
+
   validates :title, :presence => true
   validates :title, :length => {:in => 3..50}
   
@@ -64,13 +63,7 @@ class Blog < ActiveRecord::Base
   rescue
     return false
   end
-  
-  def attach!(owner)
-    self.transaction do
-      owner.attachments.orphan.each {|attachment| attachment.update_attribute(:blog_id, self.id) }
-    end
-  end
-  
+
   # blog viewer hit counter
   def increment_view_count
     increment(:view_count)        # add view_count += 1
