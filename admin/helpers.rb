@@ -42,8 +42,11 @@ ApiOnecoinIm::Admin.helpers do
   def login_from_cookie
     hash = request.cookies
     session = hash["rack.session"]
-    json = JSON.parse(session)
-    token = json["secure"]["access_token"] || ""
-    Account.find_by_token(token)
+    if session
+      json = JSON.parse(session)
+      token = json["secure"]["access_token"] || ""
+      current_user = Account.find_by_token(token)
+    end
+    current_user
   end
 end

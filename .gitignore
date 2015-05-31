@@ -6,8 +6,9 @@ bin/*
 .bundle/
 config/app_config.yml
 config/database.yml
-config/database.prod.yml
+config/database.prod*.yml
 config/nginx.conf
+config/nginx.prod*.conf
 config/nginx.local.conf
 config/deploy.rb
 config/deploy/onecoin*

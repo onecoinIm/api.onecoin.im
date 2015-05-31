@@ -28,9 +28,6 @@ ActiveRecord::Schema.define(:version => 23) do
     t.string   "logo"
     t.string   "surname"
     t.string   "token"
-    t.string   "title"
-    t.string   "url"
-    t.string   "original"
   end
 
   create_table "blog_comments", :force => true do |t|

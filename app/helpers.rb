@@ -57,7 +57,7 @@ ApiOnecoinIm::OnecoinIm.helpers do
   # blog search ping for SEO purpose
   def ping_search_engine(blog)
     # http://www.google.cn/intl/zh-CN/help/blogsearch/pinging_API.html
-    # http://www.baidu.com/search/blogsearch_help.html
+    # http://help.baidu.com/question?prod_en=master&class=476&id=1000423
     baidu = XMLRPC::Client.new2("http://ping.baidu.com/ping/RPC2")
     baidu.timeout = 5 # set timeout 5 seconds
     baidu.call("weblogUpdates.extendedPing",
