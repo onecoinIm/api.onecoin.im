@@ -1,16 +1,15 @@
-# The api of the website
+# A cms or blogger powered by padrino & grape
 
-<http://onecoin.im>
+Demo: <http://onecoin.im>
 
 This is a website project powered by Ember.js(ember-cli) and Padrino(Grape).It provides many nice tools to track the
 <onecoin.eu>'s info, and to help members to make better decisions.
 
-这是一个用Ember.js作为前端框架，Padrino作为后台Api驱动的Web应用。该网站提供了很多好工具用于跟踪维卡比官网最新通告信息，帮助会员作出
-更好投资决定。
+这是一个用Ember.js作为前端框架，Padrino作为后台Api驱动的Web应用。该网站提供了很多好工具用于跟踪维卡比官网最新通告信息，帮助会员作出更好投资决定。
 
 ## System requirements
 
-* ruby 1.9, recommend 1.9 p327 version
+* ruby 2.1.5
 * MySQL 5.x, you should set utf-8 default encoding utf-8 at `my.cnf`, like this:
 
         [client]   # on 5.0 or 5.1
@@ -18,9 +17,8 @@ This is a website project powered by Ember.js(ember-cli) and Padrino(Grape).It p
         [mysqld]
         default-character-set=utf8 
 
-        [mysqld]   # on 5.5
+        [mysqld]   # on 5.6
         collation-server = utf8_unicode_ci
-        init-connect='SET NAMES utf8'
         character-set-server = utf8
 
 * memcached
@@ -55,4 +53,4 @@ remove such lines in `Gemfile` and run with thin.
 
 ## License
 
-[The MIT License (MIT)](https://github.com/onecoinim/api.onecoin.im/blob/master/LICENSE)
+[The MIT License (MIT)](https://github.com/onecoinim/padrino-cms/blob/master/LICENSE)
