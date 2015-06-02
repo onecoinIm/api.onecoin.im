@@ -6,12 +6,12 @@ bin/*
 .bundle/
 config/app_config.yml
 config/database.yml
-config/database.prod*.yml
 config/nginx.conf
-config/nginx.prod*.conf
-config/nginx.local.conf
+config/database/*
+config/nginx/*
 config/deploy.rb
-config/deploy/onecoin*
+config/deploy/aws-*.*
+config/deploy/ali-*.*
 public/uploads
 public/admin/uploads
 vendor/gems/*
