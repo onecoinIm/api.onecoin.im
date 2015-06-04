@@ -1,8 +1,22 @@
+
+require 'rubygems'
+require 'mechanize'
+
 class Onecoiner
-  include Scrapify::Base
-  html "https://www.onecoin.eu/tech/other/getJoinedPeople"
+  # include Scrapify::Base
+  # html "https://www.onecoin.eu/tech/other/getJoinedPeople"
+  #
+  # attribute :counter, css: "body"
+  #
+  # key :counter
 
-  attribute :counter, css: "body"
+  a = Mechanize.new { |agent|
+    agent.user_agent_alias = 'Mac Safari'
+  }
 
-  key :counter
+  a.get('https://www.onecoin.eu/tech/other/getJoinedPeople') do |page|
+    p page.body
+    page.body
+  end
 end
+

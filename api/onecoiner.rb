@@ -8,9 +8,9 @@ module ApiOnecoinIm
       # 输出： {"count":"340268"}
       desc "实时获取官网的加入人数"
       get ":id" do
-        onecoiner = Onecoiner.all.first
-        onecoiner = {id: 1, counter: onecoiner.counter}
-        {onecoiner: onecoiner}
+        onecoiner = Onecoiner.new
+        # onecoiner = {id: 1, counter: onecoiner.counter}
+        # {onecoiner: onecoiner}
       end
     end
   end
