@@ -199,10 +199,6 @@ GEM
       crass (~> 1.0.1)
       nokogiri (>= 1.4.4)
       nokogumbo (= 1.2.0)
-    scrapify (0.0.9)
-      activesupport
-      json
-      nokogiri
     sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -273,7 +269,6 @@ DEPENDENCIES
   rake
   rest-client
   sanitize
-  scrapify
   second_level_cache!
   tilt (~> 1.4.1)
   warden-oauth2!

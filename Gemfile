@@ -35,7 +35,7 @@ gem 'grape'
 gem 'grape-rabl'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'warden-oauth2', :git => "https://github.com/mojied/warden-oauth2.git"
-gem 'scrapify'
+# gem 'scrapify'
 gem 'mechanize'
 
 # Production requirements

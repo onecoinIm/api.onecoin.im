@@ -1,22 +1,36 @@
-
+# encoding: utf-8
 require 'rubygems'
 require 'mechanize'
 
+# 参考
+# https://github.com/CloCkWeRX/toowoomba/blob/master/scraper.rb
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+I_KNOW_THAT_OPENSSL_VERIFY_PEER_EQUALS_VERIFY_NONE_IS_WRONG = nil
+
 class Onecoiner
-  # include Scrapify::Base
-  # html "https://www.onecoin.eu/tech/other/getJoinedPeople"
-  #
-  # attribute :counter, css: "body"
-  #
-  # key :counter
+  attr_accessor :uri, :agent
 
-  a = Mechanize.new { |agent|
-    agent.user_agent_alias = 'Mac Safari'
-  }
+  def initialize
+    @uri = 'https://www.onecoin.eu/tech/other/getJoinedPeople'
+    @agent = 'Mac Safari'
+  end
 
-  a.get('https://www.onecoin.eu/tech/other/getJoinedPeople') do |page|
-    p page.body
-    page.body
+  def mechanize
+    Mechanize.new do |m|
+      m.user_agent_alias = agent
+
+      # http://sinyt.hateblo.jp/entry/2013/12/24/203528
+      m.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    end
+  end
+
+  def all
+    result = nil
+    mechanize.get(uri) do |page|
+      result = page.body.strip
+      logger.info(result)
+    end
+    result
   end
 end
 

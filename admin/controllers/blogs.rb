@@ -35,7 +35,7 @@ ApiOnecoinIm::Admin.controllers :blogs do
 
   get :edit, :with => :id do
     @title = pat(:edit_title, :model => params[:title])
-    @blog = of_current_account(:blogs).find(params[:id])
+    @blog = Blog.find(params[:id])
     if @blog
       render 'blogs/edit'
     else
@@ -46,7 +46,7 @@ ApiOnecoinIm::Admin.controllers :blogs do
 
   put :update, :with => :id do
     @title = pat(:update_title, :model => params[:title])
-    @blog = of_current_account(:blogs).find(params[:id])
+    @blog = Blog.find(params[:id])
     if @blog
       if @blog.update_blog(params[:blog])
         flash[:success] = pat(:update_success, :model => '文章', :id => "#{params[:id]}")

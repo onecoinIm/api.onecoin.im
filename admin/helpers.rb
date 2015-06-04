@@ -43,7 +43,9 @@ ApiOnecoinIm::Admin.helpers do
     hash = request.cookies
     session = hash["rack.session"]
     if session
-      json = JSON.parse(session)
+      # Fix: "unexpected token" error for JSON.parse
+      # http://makandracards.com/makandra/15611-how-to-fix-unexpected-token-error-for-json-parse
+      json = JSON.parse(session, :quirks_mode => true)
       token = json["secure"]["access_token"] || ""
       current_user = Account.find_by_token(token)
     end
