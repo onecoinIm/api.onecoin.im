@@ -28,6 +28,7 @@ module ApiOnecoinIm
       role.project_module :categories, '/categories'
       # role.project_module :attachments, '/attachments'
       role.project_module :accounts, '/accounts'
+      role.project_module :spider, '/spider'
     end
 
     # Custom error management
