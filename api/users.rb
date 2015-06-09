@@ -4,9 +4,14 @@ module ApiOnecoinIm
   class Api
     resource :users do
 
-      get ":id" do
-        @user = Account.find(params[:id])
-        @user
+      get :rabl => "users" do
+        @users = Account.all
+        @users
+      end
+
+      get ":id", :rabl => "account"  do
+        @account = Account.find(params[:id])
+        @account
       end
 
       desc "注册用户."
