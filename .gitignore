@@ -9,6 +9,7 @@ config/database.yml
 config/nginx.conf
 config/database/*
 config/nginx/*
+config/squid/*
 config/deploy.rb
 config/deploy/aws-*.*
 config/deploy/ali-*.*
