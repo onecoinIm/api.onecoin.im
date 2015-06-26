@@ -82,6 +82,9 @@ SecondLevelCache.configure do |config|
   config.cache_store = APP_CACHE
   config.logger = logger
   config.cache_key_prefix = CACHE_PREFIX
+
+  #不log缓存信息 http://stackoverflow.com/questions/7254184/how-to-set-rails-cache-log-level-separately
+  config.cache_store.silence!
 end
 
 # Set acts_as_taggable

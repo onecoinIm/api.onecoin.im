@@ -57,7 +57,7 @@ class Blog < ActiveRecord::Base
     self.transaction do
       update_attributes!(param_hash)
       blog_content.save!
-      blog_content_en.save!
+      blog_content_en.save! if blog_content_en
       save!
     end
   rescue

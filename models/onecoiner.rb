@@ -27,9 +27,15 @@ class Onecoiner
   def all
     result = nil
     mechanize.get(uri) do |page|
-      result = page.body.strip
-      logger.info(result)
+      begin
+        result = page.body.strip
+
+      rescue
+        return result
+
+      end
     end
+
     result
   end
 end

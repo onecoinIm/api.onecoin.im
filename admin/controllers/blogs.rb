@@ -50,6 +50,7 @@ ApiOnecoinIm::Admin.controllers :blogs do
     if @blog
       if @blog.update_blog(params[:blog])
         flash[:success] = pat(:update_success, :model => '文章', :id => "#{params[:id]}")
+        logger.info flash[:success]
         params[:save_and_continue] ?
             redirect(url(:blogs, :index)) :
             redirect(url(:blogs, :edit, :id => @blog.id))

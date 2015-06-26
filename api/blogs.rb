@@ -15,10 +15,10 @@ module ApiOnecoinIm
         #
 
         @blogs = if params[:hot]
-          Blog.hot_blogs(params[:hot])
-        else
-          Blog.order('id DESC').page(params[:page])
-        end
+                   Blog.hot_blogs(params[:hot])
+                 else
+                   Blog.order('id DESC').page(params[:page])
+                 end
       end
 
       get ':id', :rabl => "blog" do
@@ -26,7 +26,7 @@ module ApiOnecoinIm
         @blog
       end
 
-      put ':id', :rabl => "blog"  do
+      put ':id', :rabl => "blog" do
         @blog = Blog.find(params[:id])
         @blog.increment_view_count
         @blog
@@ -66,7 +66,6 @@ module ApiOnecoinIm
       #   end
       # end
     end
-
 
 
   end
