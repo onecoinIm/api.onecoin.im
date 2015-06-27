@@ -30,7 +30,7 @@ class Onecoiner
       begin
         result = page.body.strip
 
-      rescue
+      rescue Mechanize::ResponseCodeError => e
         return result
 
       end
